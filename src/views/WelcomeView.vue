@@ -1,8 +1,9 @@
 <template>
   <div class="welcome-view">
+    <img src="../assets/logo_gran_dt_ort.png" alt="logo">
     <h1>Bienvenido a El Gran DT ORT</h1>
-    <button class="btn btn-primary" @click="goToRegister">Registrarse</button>
     <button class="btn btn-primary" @click="goToLogin">Iniciar Sesión</button>
+    <button class="btn btn-primary" @click="goToRegister">Registrarse</button>
   </div>
 </template>
 
