@@ -9,7 +9,12 @@
             <label for="password">Contraseña:</label>
             <input type="password" id="password" v-model="password">
         </div>
-        <button class="btn btn-primary" @click="login">Iniciar Sesión</button>
+        <div>
+            <button class="btn btn-primary" @click="login">Iniciar Sesión</button>
+        </div>
+        <div>
+            <button class="btn btn-primary" @click="login">Volver al inicio</button>
+        </div>
     </div>
 </template>
   
