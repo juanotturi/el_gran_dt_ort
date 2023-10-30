@@ -4,22 +4,10 @@
     <div class="centered-container box">
       <h1 class="titulo">Inicio de sesión</h1>
       <div>
-        <input
-          type="text"
-          id="mail"
-          v-model="mail"
-          placeholder="Correo electrónico"
-          required
-        />
+        <input type="text" id="mail" v-model="mail" placeholder="Correo electrónico" required />
       </div>
       <div>
-        <input
-          type="password"
-          id="password"
-          v-model="password"
-          placeholder="Contraseña"
-          required
-        />
+        <input type="password" id="password" v-model="password" placeholder="Contraseña" required />
       </div>
       <div>
         <button class="btn btn-primary" @click="login">Iniciar Sesión</button>
@@ -52,5 +40,5 @@ export default {
 };
 </script>
 <style scoped>
-@import url("C:\Users\Usuario\OneDrive\Escritorio\PNT2-2023\el_gran_dt_ort\src\assets\estilos.css");
+@import url("C:\Users\Usuario\OneDrive\Escritorio\JUAN_PROGRAMACION\PNT2\ElGranDT_ORT\src\assets\estilos.css");
 </style>
