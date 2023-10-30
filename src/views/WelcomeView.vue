@@ -23,5 +23,5 @@ export default {
 };
 </script>
 <style scoped>
-@import url("C:\Users\Usuario\OneDrive\Escritorio\JUAN_PROGRAMACION\PNT2\ElGranDT_ORT\src\assets\estilos.css");
+@import url("@/assets/estilos.css");
 </style>
