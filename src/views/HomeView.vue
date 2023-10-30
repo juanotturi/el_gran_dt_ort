@@ -5,5 +5,5 @@
 </template>
 
 <style scoped>
-@import url("C:\Users\Usuario\OneDrive\Escritorio\JUAN_PROGRAMACION\PNT2\ElGranDT_ORT\src\assets\estilos.css");
+@import url("D:\el_gran_dt_ort\src\assets\estilos.css");
 </style>
