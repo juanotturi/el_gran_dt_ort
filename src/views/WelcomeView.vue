@@ -1,9 +1,11 @@
 <template>
-  <div class="welcome-view">
-    <img src="../assets/logo_gran_dt_ort.png" alt="logo">
-    <h1>Bienvenido a El Gran DT ORT</h1>
-    <button class="btn btn-primary" @click="goToLogin">Iniciar Sesión</button>
-    <button class="btn btn-primary" @click="goToRegister">Registrarse</button>
+  <div class="centered-container">
+    <img class="logo" src="../assets/logo_gran_dt_ort.png">
+    <div class="centered-container box">
+      <h1 class="titulo">Bienvenido a El Gran DT ORT</h1>
+      <button class="btn btn-primary" @click="goToLogin">Iniciar Sesión</button>
+      <button class="btn btn-primary" @click="goToRegister">Registrarse</button>
+    </div>
   </div>
 </template>
 
@@ -19,21 +21,6 @@ export default {
   }
 };
 </script>
-
 <style scoped>
-.welcome-view {
-  background-image: url("@/assets/cancha.png");
-  /* Reemplaza con la ruta de tu imagen */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  margin: 0;
-  padding: 0;
-}
+@import url("C:\Users\Usuario\OneDrive\Escritorio\JUAN_PROGRAMACION\PNT2\ElGranDT_ORT\src\assets\estilos.css");
 </style>

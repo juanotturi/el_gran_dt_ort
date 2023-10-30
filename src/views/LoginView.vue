@@ -1,15 +1,21 @@
 <template>
-    <div>
-        <h1>Inicio de sesión</h1>
-        <div>
-            <label for="mail">Mail:</label>
-            <input type="text" id="mail" v-model="mail">
+    <div class="centered-container">
+        <img class="logo" src="../assets/logo_gran_dt_ort.png" alt="logo">
+        <div class="centered-container box">
+            <h1 class="titulo">Inicio de sesión</h1>
+            <div>
+                <input type="text" id="mail" v-model="mail" placeholder="Correo electrónico" required>
+            </div>
+            <div>
+                <input type="password" id="password" v-model="password" placeholder="Contraseña" required>
+            </div>
+            <div>
+                <button class="btn btn-primary" @click="login">Iniciar Sesión</button>
+            </div>
+            <div>
+                <button class="btn btn-primary" @click="goToWelcome">Volver al inicio</button>
+            </div>
         </div>
-        <div>
-            <label for="password">Contraseña:</label>
-            <input type="password" id="password" v-model="password">
-        </div>
-        <button class="btn btn-primary" @click="login">Iniciar Sesión</button>
     </div>
 </template>
   
@@ -23,11 +29,14 @@ export default {
     },
     methods: {
         login() {
-            // Aquí debes implementar la lógica para iniciar sesión
-            // Puedes usar this.username y this.password para acceder a los datos del formulario
-            // Realiza la autenticación y redirige al usuario si es exitosa
-        }
+            this.$router.push('/home');
+        },
+        goToWelcome() {
+            this.$router.push({ name: 'welcome' });
+        },
     }
 };
 </script>
-  
+<style scoped>
+@import url("C:\Users\Usuario\OneDrive\Escritorio\JUAN_PROGRAMACION\PNT2\ElGranDT_ORT\src\assets\estilos.css");
+</style>
