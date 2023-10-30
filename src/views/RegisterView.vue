@@ -1,33 +1,42 @@
 <template>
-  <div>
-    <h1>Registro de usuario</h1>
-    <div>
-      <label for="name">Nombre:</label>
-      <input type="text" id="name" v-model="name">
-    </div>
-    <div>
-      <label for="surname">Apellido:</label>
-      <input type="text" id="surname" v-model="surname">
-    </div>
-    <div>
-      <label for="mail">Mail:</label>
-      <input type="text" id="mail" v-model="mail">
-    </div>
-    <div>
-      <label for="password">Contraseña:</label>
-      <input type="password" id="password" v-model="password">
-    </div>
-    <div>
-      <button class="btn btn-primary" @click="login">Registrar Usuario</button>
-    </div>
-    <div>
-      <button class="btn btn-primary" @click="login">Volver al inicio</button>
+  <div class="centered-container">
+    <img class="logo" src="../assets/logo_gran_dt_ort.png" alt="logo">
+    <div class="centered-container box">
+      <h1 class="titulo">Registro de usuario</h1>
+      <div>
+        <input type="text" id="name" v-model="name" placeholder="Nombre" required>
+      </div>
+      <div>
+        <input type="text" id="surname" v-model="surname" placeholder="Apellido" required>
+      </div>
+      <div>
+        <input type="text" id="mail" v-model="mail" placeholder="Correo electrónico" required>
+      </div>
+      <div>
+        <input type="password" id="password" v-model="password" placeholder="Contraseña" required>
+      </div>
+      <div>
+        <button class="btn btn-primary" @click="signin">Registrar Usuario</button>
+      </div>
+      <div>
+        <button class="btn btn-primary" @click="goToWelcome">Volver al inicio</button>
+      </div>
     </div>
   </div>
 </template>
   
 <script>
 export default {
-  // Agrega aquí los métodos y lógica necesaria para el registro de usuarios
-};
+  methods: {
+    signin() {
+      this.$router.push({ name: 'home' });
+    },
+    goToWelcome() {
+      this.$router.push({ name: 'welcome' });
+    }
+  }
+}
 </script>
+<style scoped>
+@import url("C:\Users\Usuario\OneDrive\Escritorio\JUAN_PROGRAMACION\PNT2\ElGranDT_ORT\src\assets\estilos.css");
+</style>

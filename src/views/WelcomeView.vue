@@ -1,10 +1,8 @@
 <template>
-  <div>
-    <div>
-      <img src="../assets/logo_gran_dt_ort.png" alt="logo">
-      <h1 style="text-align: center">Bienvenido a El Gran DT ORT</h1>
-    </div>
-    <div>
+  <div class="centered-container">
+    <img class="logo" src="../assets/logo_gran_dt_ort.png">
+    <div class="centered-container box">
+      <h1 class="titulo">Bienvenido a El Gran DT ORT</h1>
       <button class="btn btn-primary" @click="goToLogin">Iniciar Sesión</button>
       <button class="btn btn-primary" @click="goToRegister">Registrarse</button>
     </div>
@@ -23,5 +21,6 @@ export default {
   }
 };
 </script>
-
-<style scoped></style>
+<style scoped>
+@import url("C:\Users\Usuario\OneDrive\Escritorio\JUAN_PROGRAMACION\PNT2\ElGranDT_ORT\src\assets\estilos.css");
+</style>

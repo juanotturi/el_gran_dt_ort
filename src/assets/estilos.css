@@ -1,0 +1,33 @@
+.imagen-fondo {
+    background-image: url("fondo-inicio.png");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+  }
+  
+  .centered-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .titulo {
+    color: yellow;
+  }
+
+  .logo {
+    position: fixed;
+    top: 32%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+  }
+
+  .box {
+    position: fixed;
+    top: 56%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    z-index: 999;
+  }
