@@ -35,13 +35,13 @@ body {
 
 @media screen and (max-width: 768px) {
   .cancha {
-    width: 90%; /* Cambia el ancho al 90% en pantallas más pequeñas */
+    width: 90%;
   }
 }
 
 .cancha {
   height: auto;
-  max-width: 100%; /* Define el ancho máximo del 80% del contenedor */
+  max-width: 100%;
 
-  margin: 40px; /* Establece márgenes alrededor de la imagen */
+  margin: 40px;
 }
