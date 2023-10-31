@@ -16,11 +16,12 @@
         <input type="password" id="password" v-model="password" placeholder="Contraseña" required />
       </div>
       <div>
+        <input type="text" id="team" v-model="team" placeholder="Nombre del equipo" required />
+      </div>
+      <div>
         <button class="btn btn-primary" @click="signin">
           Registrar Usuario
         </button>
-      </div>
-      <div>
         <button class="btn btn-primary" @click="goToWelcome">
           Volver al inicio
         </button>
@@ -31,6 +32,17 @@
 
 <script>
 export default {
+  data() {
+    return {
+      usuario: {
+        name: "",
+        surname: "",
+        mail: "",
+        password: "",
+        nombre_equipo: ""
+      },
+    };
+  },
   methods: {
     signin() {
       this.$router.push({ name: "home" });

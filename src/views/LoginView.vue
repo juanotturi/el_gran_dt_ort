@@ -25,8 +25,10 @@
 export default {
   data() {
     return {
-      mail: "",
-      password: "",
+      usuario: {
+        mail: "",
+        password: "",
+      },
     };
   },
   methods: {
