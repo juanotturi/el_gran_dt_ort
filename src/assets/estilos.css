@@ -32,3 +32,16 @@ body {
   transform: translate(-50%, 0%);
   z-index: 999;
 }
+
+@media screen and (max-width: 768px) {
+  .cancha {
+    width: 90%; /* Cambia el ancho al 90% en pantallas más pequeñas */
+  }
+}
+
+.cancha {
+  height: auto;
+  max-width: 100%; /* Define el ancho máximo del 80% del contenedor */
+
+  margin: 40px; /* Establece márgenes alrededor de la imagen */
+}

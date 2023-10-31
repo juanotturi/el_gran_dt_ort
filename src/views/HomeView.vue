@@ -1,6 +1,6 @@
 <template>
   <div class="centered-container">
-    <img src="../assets/cancha.png" />
+    <img class="cancha" src="../assets/cancha.png" />
   </div>
 </template>
 
