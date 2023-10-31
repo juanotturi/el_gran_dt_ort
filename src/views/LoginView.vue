@@ -12,35 +12,22 @@
       <div>
         <button class="btn btn-primary" @click="login">Iniciar Sesión</button>
       </div>
-      <div>
-        <button class="btn btn-primary" @click="goToWelcome">
-          Volver al inicio
-        </button>
-      </div>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      usuario: {
-        mail: "",
-        password: "",
-      },
-    };
-  },
-  methods: {
-    login() {
-      this.$router.push("/home");
-    },
-    goToWelcome() {
-      this.$router.push({ name: "welcome" });
-    },
-  },
+<script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const mail = ref('');
+const password = ref('');
+const router = useRouter();
+const login = () => {
+  router.push("/home");
 };
 </script>
+
 <style scoped>
 @import url("@/assets/estilos.css");
 </style>
