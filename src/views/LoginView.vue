@@ -19,12 +19,15 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useUserStore } from '../stores/user.js';
 
 const mail = ref('');
 const password = ref('');
 const router = useRouter();
+const userStore = useUserStore();
 const login = () => {
-  router.push("/home");
+  userStore.login(mail.value, password.value);
+  router.push('/home');
 };
 </script>
 
