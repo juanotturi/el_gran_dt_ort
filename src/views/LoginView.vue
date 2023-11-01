@@ -25,9 +25,13 @@ const mail = ref('');
 const password = ref('');
 const router = useRouter();
 const userStore = useUserStore();
+
 const login = () => {
-  userStore.login(mail.value, password.value);
-  router.push('/home');
+  if (userStore.login(mail.value, password.value)) {
+    router.push('/home');
+  } else {
+    alert('Usuario o contraseña incorrectos');
+  }
 };
 </script>
 
