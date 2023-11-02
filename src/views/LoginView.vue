@@ -24,9 +24,9 @@ import { useUserStore } from '../stores/user.js';
 const mail = ref('');
 const password = ref('');
 const router = useRouter();
-const userStore = useUserStore();
+let userStore = useUserStore();
 
-const login = () => {
+function login() {
   if (userStore.login(mail.value, password.value)) {
     router.push('/home');
   } else {
