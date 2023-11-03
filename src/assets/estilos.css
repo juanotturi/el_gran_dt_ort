@@ -42,6 +42,24 @@ body {
 .cancha {
   height: auto;
   max-width: 100%;
-
   margin: 40px;
+}
+
+.btn-danger {
+  position: absolute;
+  bottom: 20px;
+  left: 25px;
+}
+.left-panel {
+  background-color: #030202;
+  color: #fff;
+  padding: 20px;
+  width: 170px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 96%;
+  border-radius: 10px;
+  margin: 10px 10px 10px 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
