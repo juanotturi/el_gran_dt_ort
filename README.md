@@ -1,6 +1,15 @@
 # ElGranDT_ORT
 
-This template should help get you started developing with Vue 3 in Vite.
+Proyecto creado para la materia Programación en Nuevas Tecnologías en el Instituto ORT, segundo cuatrimestre del año 2023
+
+Docente:
+Gaspar de Carlo
+
+Alumnos:
+Juan Ignacio Otturi,
+Marina Galzerano,
+Milagros Rojas,
+Blas Bruno
 
 ## Recommended IDE Setup
 
