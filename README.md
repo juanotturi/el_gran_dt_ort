@@ -6,9 +6,9 @@ Docente:
 Gaspar de Carlo
 
 Alumnos:
-Juan Ignacio Otturi
-Marina Galzerano
-Milagros Rojas
+Juan Ignacio Otturi,
+Marina Galzerano,
+Milagros Rojas,
 Blas Bruno
 
 ## Recommended IDE Setup
