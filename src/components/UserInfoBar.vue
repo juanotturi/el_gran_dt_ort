@@ -16,13 +16,14 @@
             <p>Utilizado:<br></p>
         </div>
         <div class="divider"></div>
-        <button class="btn btn-danger" @click="logout">Cerrar Sesión</button>
+        <Button class="btn-danger" @click="logout" label="Cerrar Sesión" severity="danger" />
     </div>
 </template>
 
 <script setup>
 import { useRouter } from 'vue-router';
 import { useUserStore } from '../stores/user.js';
+import Button from 'primevue/button';
 
 const router = useRouter();
 const userStore = useUserStore();

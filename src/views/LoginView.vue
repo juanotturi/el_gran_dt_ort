@@ -10,7 +10,7 @@
         <input type="password" id="password" v-model="password" placeholder="Contraseña" required />
       </div>
       <div>
-        <button class="btn btn-primary" @click="login">Iniciar Sesión</button>
+        <Button @click="login" label="Ingresar" severity="info" />
       </div>
     </div>
   </div>
@@ -20,6 +20,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '../stores/user.js';
+import Button from 'primevue/button';
 
 const mail = ref('');
 const password = ref('');
