@@ -5,18 +5,15 @@ body {
   background-size: cover;
   background-position: center;
 }
-
 .centered-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-
 .titulo {
   color: yellow;
 }
-
 .logo {
   position: fixed;
   top: 32%;
@@ -24,7 +21,6 @@ body {
   transform: translate(-50%, -50%);
   z-index: 999;
 }
-
 .box {
   position: fixed;
   top: 56%;
@@ -32,19 +28,16 @@ body {
   transform: translate(-50%, 0%);
   z-index: 999;
 }
-
 @media screen and (max-width: 768px) {
   .cancha {
     width: 90%;
   }
 }
-
 .cancha {
   height: auto;
   max-width: 100%;
   margin: 40px;
 }
-
 .btn-danger {
   position: absolute;
   bottom: 20px;
@@ -55,11 +48,33 @@ body {
   color: #fff;
   padding: 20px;
   width: 170px;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   height: 96%;
   border-radius: 10px;
   margin: 10px 10px 10px 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+.right-panel {
+  background-color: #030202;
+  color: #fff;
+  padding: 20px;
+  width: 170px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 96%;
+  border-radius: 10px;
+  margin: 10px -5px 10px 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+.divider {
+  height: 1px;
+  background-color: #fff;
+  margin: 0px 0 12px 0;
+}
+.panel-item {
+  display: flex;
+  justify-content: space-between;
 }

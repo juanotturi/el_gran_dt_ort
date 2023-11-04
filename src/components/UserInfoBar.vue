@@ -1,13 +1,21 @@
 <template>
     <div class="left-panel">
-        <p>Equipo:</p>
-        <p></p>
-        <p>DT:</p>
-        <p>{{ user }}</p>
-        <p>Presupuesto total:</p>
-        <p></p>
-        <p>Utilizado:</p>
-        <p></p>
+        <div class="panel-item">
+            <p>Equipo:<br>{{ user.team }}</p>
+        </div>
+        <div class="divider"></div>
+        <div class="panel-item">
+            <p>DT:<br>{{ user.name + " " + user.surname }}</p>
+        </div>
+        <div class="divider"></div>
+        <div class="panel-item">
+            <p>Presupuesto total:<br>$ 1.000.000</p>
+        </div>
+        <div class="divider"></div>
+        <div class="panel-item">
+            <p>Utilizado:<br></p>
+        </div>
+        <div class="divider"></div>
         <button class="btn btn-danger" @click="logout">Cerrar Sesión</button>
     </div>
 </template>
