@@ -21,6 +21,7 @@ body {
   transform: translate(-50%, -50%);
   z-index: 999;
 }
+
 .box {
   position: fixed;
   top: 56%;
@@ -28,21 +29,25 @@ body {
   transform: translate(-50%, 0%);
   z-index: 999;
 }
+
 @media screen and (max-width: 768px) {
   .cancha {
     width: 90%;
   }
 }
+
 .cancha {
   height: auto;
   max-width: 100%;
   margin: 40px;
 }
+
 .btn-danger {
   position: absolute;
   bottom: 20px;
   left: 25px;
 }
+
 .left-panel {
   background-color: #030202;
   color: #fff;
@@ -56,6 +61,7 @@ body {
   margin: 10px 10px 10px 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
+
 .right-panel {
   background-color: #030202;
   color: #fff;
@@ -69,11 +75,13 @@ body {
   margin: 10px -5px 10px 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
+
 .divider {
   height: 1px;
   background-color: #fff;
   margin: 0px 0 12px 0;
 }
+
 .panel-item {
   display: flex;
   justify-content: space-between;
@@ -84,4 +92,24 @@ body {
   align-items: center;
   justify-content: center;
   margin-bottom: 10px;
+}
+
+.custom-list {
+  background-color: #027abc;
+  color: black;
+  max-height: 160px;
+  overflow-y: auto;
+}
+
+.list-group-item {
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s;
+  font-size: 13px;
+}
+
+.fixed-width-button {
+  width: 130px;
 }
