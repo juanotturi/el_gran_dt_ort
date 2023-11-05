@@ -97,7 +97,7 @@ body {
 .custom-list {
   background-color: #027abc;
   color: black;
-  max-height: 160px;
+  max-height: 27vh;
   overflow-y: auto;
 }
 
