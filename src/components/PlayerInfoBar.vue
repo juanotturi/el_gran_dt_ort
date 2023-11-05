@@ -34,22 +34,27 @@
 <script setup>
 import { ref } from "vue";
 import Button from 'primevue/button';
+import axios from 'axios';
 
 const showList = ref(false);
 const selectedPlayer = ref(null);
-const players = [
-    { id: "001", name: 'Bareriro Adam', club: 'San Lorenzo', position: 'delantero', market_value: 4200000 },
-    { id: "002", name: 'Advíncula Luís', club: 'Boca Juniors', position: 'defensor', market_value: 4700000 },
-    { id: "003", name: 'Pérez Enzo', club: 'River Plate', position: 'volante', market_value: 4200000 },
-    { id: "004", name: 'Batalla Augusto', club: 'San Lorenzo', position: 'arquero', market_value: 5000000 },
-    { id: "005", name: 'Rojo Marcos', club: 'Boca Juniors', position: 'defensor', market_value: 5000000 },
-    { id: "006", name: 'Cóccaro Matías', club: 'Huracán', position: 'delanter', market_value: 4500000 },
-    { id: "007", name: 'Armani Franco', club: 'River Plate', position: 'arquero', market_value: 5900000 },
-    { id: "008", name: 'Giay Agustín', club: 'San Lorenzo', position: 'volante', market_value: 1400000 },
-    { id: "009", name: 'Romero Sergio', club: 'Boca Juniors', position: 'arquero', market_value: 6000000 },
-    { id: "010", name: 'Rondón Salomón', club: 'River Plate', position: 'delantero', market_value: 5000000 },
-];
+const players = [];
+
 function openList() {
+    if (!showList.value) {
+        // Realiza la solicitud al servidor Mock API para obtener datos reales de jugadores.
+        axios.get('https://6547b8c5902874dff3acae98.mockapi.io/api/v1/players')
+            .then(response => {
+                // Agrega un console.log para mostrar los datos en la consola.
+                console.log(response.data);
+                // Almacena los datos de jugadores en la variable players.
+                players.length = 0; // Limpia la lista de jugadores existente
+                players.push(...response.data);
+            })
+            .catch(error => {
+                console.error('Error al obtener datos de jugadores:', error);
+            });
+    }
     showList.value = !showList.value;
 }
 
@@ -58,7 +63,7 @@ function setPlayer(player) {
 }
 
 function changePlayer(player) {
-    window.confirm(`¿Desea cambiar a ${player.name} por Jugador anterior?`)
+    window.confirm(`¿Desea cambiar a ${player.name} por el jugador anterior?`)
 }
 </script>
 
