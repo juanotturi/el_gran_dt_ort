@@ -97,7 +97,7 @@ body {
 .custom-list {
   background-color: #027abc;
   color: black;
-  max-height: 27vh;
+  max-height: 146px;
   overflow-y: auto;
 }
 
@@ -107,7 +107,7 @@ body {
   text-decoration: none;
   display: block;
   transition: background-color 0.3s;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .fixed-width-button {
