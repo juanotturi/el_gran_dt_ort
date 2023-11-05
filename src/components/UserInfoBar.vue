@@ -9,7 +9,7 @@
         </div>
         <div class="divider"></div>
         <div class="panel-item">
-            <p>Presupuesto total:<br>$ 1.000.000</p>
+            <p>Presupuesto total:<br>$ 50.000.000</p>
         </div>
         <div class="divider"></div>
         <div class="panel-item">
