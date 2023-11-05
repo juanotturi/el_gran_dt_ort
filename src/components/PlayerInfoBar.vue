@@ -13,7 +13,7 @@
         </div>
         <div class="divider"></div>
         <div class="panel-item">
-            <p>Cotización:<br>{{ selectedPlayer ? selectedPlayer.market_value : '' }}</p>
+            <p>Cotización:<br>{{ selectedPlayer ? selectedPlayer.prize : '' }}</p>
         </div>
         <div class="divider"></div>
         <div>
@@ -39,24 +39,23 @@ import axios from 'axios';
 const showList = ref(false);
 const selectedPlayer = ref(null);
 const players = [];
-
 function openList() {
     if (!showList.value) {
-        // Realiza la solicitud al servidor Mock API para obtener datos reales de jugadores.
         axios.get('https://6547b8c5902874dff3acae98.mockapi.io/api/v1/players')
             .then(response => {
-                // Agrega un console.log para mostrar los datos en la consola.
                 console.log(response.data);
-                // Almacena los datos de jugadores en la variable players.
-                players.length = 0; // Limpia la lista de jugadores existente
+                players.length = 0;
                 players.push(...response.data);
+                showList.value = true;
             })
             .catch(error => {
                 console.error('Error al obtener datos de jugadores:', error);
             });
+    } else {
+        showList.value = false;
     }
-    showList.value = !showList.value;
 }
+
 
 function setPlayer(player) {
     selectedPlayer.value = player;
