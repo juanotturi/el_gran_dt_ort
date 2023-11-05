@@ -35,27 +35,29 @@
 import { ref } from "vue";
 import Button from 'primevue/button';
 import axios from 'axios';
-
 const showList = ref(false);
 const selectedPlayer = ref(null);
 const players = [];
+
 function openList() {
     if (!showList.value) {
-        axios.get('https://6547b8c5902874dff3acae98.mockapi.io/api/v1/players')
-            .then(response => {
-                console.log(response.data);
-                players.length = 0;
-                players.push(...response.data);
-                showList.value = true;
-            })
-            .catch(error => {
-                console.error('Error al obtener datos de jugadores:', error);
-            });
+        getPlayers();
     } else {
         showList.value = false;
     }
 }
 
+async function getPlayers() {
+    try {
+        const response = await axios.get('https://6547b8c5902874dff3acae98.mockapi.io/api/v1/players');
+        console.log(response.data);
+        players.length = 0;
+        players.push(...response.data);
+        showList.value = true;
+    } catch (error) {
+        console.error('Error al obtener datos de jugadores:', error);
+    }
+}
 
 function setPlayer(player) {
     selectedPlayer.value = player;
