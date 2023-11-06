@@ -1,11 +1,11 @@
 <template>
     <div class="left-panel">
         <div class="panel-item">
-            <p>Equipo:<br>{{ user.team }}</p>
+            <p>Equipo:<br>{{ savedUser.team }}</p>
         </div>
         <div class="divider"></div>
         <div class="panel-item">
-            <p>DT:<br>{{ user.name + " " + user.surname }}</p>
+            <p>DT:<br>{{ savedUser.name + " " + savedUser.surname }}</p>
         </div>
         <div class="divider"></div>
         <div class="panel-item">
@@ -28,10 +28,17 @@ import Button from 'primevue/button';
 const router = useRouter();
 const userStore = useUserStore();
 const user = userStore.currentUser;
+const savedUser = JSON.parse(localStorage.getItem('currentUser'));
+
+if (!user.mail) {
+    if (savedUser) {
+        userStore.login(savedUser.mail, savedUser.password);
+    }
+}
 
 function logout() {
     userStore.logout();
-    router.push("/");
+    router.push('/');
 }
 </script>
 

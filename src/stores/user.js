@@ -1,43 +1,20 @@
 import { defineStore } from "pinia";
 import { computed } from "vue";
+import { users } from "./users_list.js";
 
 export const useUserStore = defineStore("userStore", () => {
-  const _users = [
-    {
-      mail: "juano",
-      password: "1234",
-      name: "Juan Ignacio",
-      surname: "Otturi",
-      team: "Owl City FC",
-    },
-    {
-      mail: "marinag",
-      password: "2345",
-      name: "Marina",
-      surname: "Galzerano",
-      team: "Los Marineros FC",
-    },
-    {
-      mail: "milagrosr",
-      password: "3456",
-      name: "Milagros",
-      surname: "Rojas",
-      team: "Los Cuervos",
-    },
-    {
-      mail: "blasb",
-      password: "4567",
-      name: "Blas",
-      surname: "Bruno",
-      team: "La Brunoneta",
-    },
-  ];
+  const _users = users;
+
   let _mail = null;
   let _password = null;
   let _name = null;
   let _surname = null;
   let _team = null;
   let _loginOk = null;
+
+  function saveUserToLocalStorage(user) {
+    localStorage.setItem("currentUser", JSON.stringify(user));
+  }
 
   function login(mail, password) {
     _loginOk = _users.find((u) => u.mail === mail && u.password === password);
@@ -47,9 +24,17 @@ export const useUserStore = defineStore("userStore", () => {
       _name = _loginOk.name;
       _surname = _loginOk.surname;
       _team = _loginOk.team;
+      saveUserToLocalStorage({
+        mail: _mail,
+        password: _password,
+        name: _name,
+        surname: _surname,
+        team: _team,
+      });
       return true;
     } else return false;
   }
+
   function logout() {
     _mail = null;
     _password = null;
@@ -57,6 +42,7 @@ export const useUserStore = defineStore("userStore", () => {
     _surname = null;
     _team = null;
     _loginOk = null;
+    localStorage.removeItem("currentUser");
   }
 
   const isLoggedIn = computed(() => _loginOk);

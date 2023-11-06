@@ -25,10 +25,16 @@ import Button from 'primevue/button';
 const mail = ref('');
 const password = ref('');
 const router = useRouter();
+const savedUser = JSON.parse(localStorage.getItem("currentUser"));
 let userStore = useUserStore();
+
+if (savedUser) {
+  userStore.login(savedUser.mail, savedUser.password);
+}
 
 function login() {
   if (userStore.login(mail.value, password.value)) {
+    console.log(userStore.currentUser)
     router.push('/home');
   } else {
     alert('Usuario o contraseña incorrectos');
