@@ -13,7 +13,7 @@
         </div>
         <div class="divider"></div>
         <div class="panel-item">
-            <p>Cotización:<br>{{ selectedPlayer ? selectedPlayer.prize : '' }}</p>
+            <p>Cotización:<br>{{ selectedPlayer ? selectedPlayer.price : '' }}</p>
         </div>
         <div class="divider"></div>
         <div>
@@ -37,11 +37,12 @@ import Button from 'primevue/button';
 import axios from 'axios';
 const showList = ref(false);
 const selectedPlayer = ref(null);
-const players = [];
+let players = [];
 
-function openList() {
+async function openList() {
     if (!showList.value) {
-        getPlayers();
+        await getPlayers();
+        showList.value = true;
     } else {
         showList.value = false;
     }
@@ -49,11 +50,8 @@ function openList() {
 
 async function getPlayers() {
     try {
-        const response = await axios.get('https://6547b8c5902874dff3acae98.mockapi.io/api/v1/players');
-        console.log(response.data);
-        players.length = 0;
-        players.push(...response.data);
-        showList.value = true;
+        const response = await axios.get("https://www.mockachino.com/b560fe55-5901-45/players");
+        players = response.data.players
     } catch (error) {
         console.error('Error al obtener datos de jugadores:', error);
     }
