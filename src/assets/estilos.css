@@ -32,6 +32,7 @@ body {
 
 @media screen and (max-width: 768px) {
   .cancha {
+    position: relative;
     width: 90%;
   }
 }
@@ -112,4 +113,22 @@ body {
 
 .fixed-width-button {
   width: 130px;
+}
+
+.player-card {
+  position: absolute;
+  border: 1px solid #ddd;
+  padding: 2px;
+  height: auto;
+  text-align: center;
+  border-radius: 4px;
+  background-color: white;
+  color: black;
+  font-size: 11px;
+}
+
+.player-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
 }

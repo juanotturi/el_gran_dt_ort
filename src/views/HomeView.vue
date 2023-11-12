@@ -1,7 +1,7 @@
 <template>
   <div class="centered-container">
     <UserInfoBar />
-    <img class="cancha" src="../assets/cancha.png" />
+    <Field />
     <PlayerInfoBar />
   </div>
 </template>
@@ -9,6 +9,7 @@
 <script setup>
 import PlayerInfoBar from '../components/PlayerInfoBar.vue';
 import UserInfoBar from '../components/UserInfoBar.vue';
+import Field from '../components/Field.vue';
 </script>
 
 <style scoped>
