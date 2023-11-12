@@ -17,16 +17,14 @@
         </div>
         <div class="divider"></div>
         <div class="panel-item">
-            <div>
-                <p for="formation">Formación:</p>
-            </div>
-            <div>
-                <select v-model="selectedFormation" id="formation">
-                    <option value="4-3-3">4-3-3</option>
-                    <option value="4-4-2">4-4-2</option>
-                    <option value="3-4-3">3-4-3</option>
-                </select>
-            </div>
+            <p>
+            <p for="formation">Formación:</p>
+            <select v-model="selectedFormation" id="formation">
+                <option value="4-3-3">4-3-3</option>
+                <option value="4-4-2">4-4-2</option>
+                <option value="3-4-3">3-4-3</option>
+            </select>
+            </p>
         </div>
         <div class="divider"></div>
         <Button class="btn-danger" @click="logout" label="Cerrar Sesión" severity="danger" />
@@ -41,7 +39,7 @@ import Button from 'primevue/button';
 const router = useRouter();
 const userStore = useUserStore();
 const user = userStore.currentUser;
-let selectedFormation = null;
+let selectedFormation = '4-3-3';
 
 function logout() {
     userStore.logout();
