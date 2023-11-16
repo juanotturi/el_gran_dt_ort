@@ -14,22 +14,58 @@ const selectedPlayerId = ref(1);
 const players = ref([
     { id: 1 },
     { id: 2 },
-    // ... otros jugadores
+    { id: 3 },
+    { id: 4 },
+    { id: 5 },
+    { id: 6 },
+    { id: 7 },
+    { id: 8 },
+    { id: 9 },
+    { id: 10 },
+    { id: 11 },
 ]);
 
 const formation = ref('4-3-3');
-
+const formations = 'https://www.mockachino.com/6c00860e-b7b1-4f/formations'
 const formationMappings = {
     '4-3-3': [
-        { x: 298, y: 287 },
-        { x: 100, y: 150 },
-        // ... otras ubicaciones
+        { x: 300, y: 295 },
+        { x: 450, y: 520 },
+        { x: 450, y: 370 },
+        { x: 450, y: 220 },
+        { x: 450, y: 80 },
+        { x: 650, y: 480 },
+        { x: 650, y: 295 },
+        { x: 650, y: 120 },
+        { x: 870, y: 480 },
+        { x: 870, y: 295 },
+        { x: 870, y: 120 },
     ],
     '4-4-2': [
-        // ... otra formación
+        { x: 300, y: 295 },
+        { x: 450, y: 520 },
+        { x: 450, y: 370 },
+        { x: 450, y: 220 },
+        { x: 450, y: 80 },
+        { x: 650, y: 520 },
+        { x: 650, y: 370 },
+        { x: 650, y: 220 },
+        { x: 650, y: 80 },
+        { x: 870, y: 370 },
+        { x: 870, y: 220 },
     ],
     '3-4-3': [
-        // ... otra formación
+        { x: 300, y: 295 },
+        { x: 450, y: 480 },
+        { x: 450, y: 295 },
+        { x: 450, y: 120 },
+        { x: 650, y: 520 },
+        { x: 650, y: 370 },
+        { x: 650, y: 220 },
+        { x: 650, y: 80 },
+        { x: 870, y: 480 },
+        { x: 870, y: 295 },
+        { x: 870, y: 120 },
     ],
 };
 
@@ -38,15 +74,14 @@ const getPlayerUbication = (playerId) => {
     if (playerIndex !== -1) {
         return formationMappings[formation.value][playerIndex];
     }
-    return { x: 0, y: 0 }; // ubicación predeterminada si no se encuentra el jugador
+    return { x: 0, y: 0 };
 };
 
-// Puedes utilizar esta computed para obtener las ubicaciones de los jugadores
 const playersUbications = computed(() => {
     return players.value.map((player) => getPlayerUbication(player.id));
 });
 </script>
-  
+
 <style>
 @import url("@/assets/estilos.css");
 </style>

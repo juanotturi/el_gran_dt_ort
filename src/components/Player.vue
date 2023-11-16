@@ -29,7 +29,7 @@ let player = ref(null);
 
 async function getPlayers() {
     try {
-        const response = await axios.get("https://www.mockachino.com/b560fe55-5901-45/players");
+        const response = await axios.get("https://www.mockachino.com/e17428de-e644-4e/players");
         players = response.data.players;
         return players;
     } catch (error) {

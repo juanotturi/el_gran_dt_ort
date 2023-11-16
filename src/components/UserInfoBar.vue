@@ -13,7 +13,7 @@
         </div>
         <div class="divider"></div>
         <div class="panel-item">
-            <p>Cotización total:<br>30000000</p>
+            <p>Cotización total:<br>---</p>
         </div>
         <div class="divider"></div>
         <div class="panel-item">
