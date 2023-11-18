@@ -43,13 +43,15 @@ onMounted(async () => {
         const selectedPlayer = players.find(player => player.id === props.id);
         if (selectedPlayer) {
             player.value = { ...selectedPlayer, ubication: props.ubication };
+            console.log(player.ubication)
         } else {
             console.error('Jugador no encontrado con el ID proporcionado');
         }
     } catch (error) {
         console.error('Error al procesar datos de jugadores:', error);
     }
-});
+}
+);
 </script>
   
 <style scoped>

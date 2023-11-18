@@ -20,9 +20,9 @@
             <p>
             <p for="formation">Formación:</p>
             <select v-model="selectedFormation" id="formation">
-                <option value="4-3-3">4-3-3</option>
-                <option value="4-4-2">4-4-2</option>
-                <option value="3-4-3">3-4-3</option>
+                <option v-for="formation in formations" :key="formation.key" :value="formation.value">
+                    {{ formation.value }}
+                </option>
             </select>
             </p>
         </div>
@@ -32,14 +32,34 @@
 </template>
 
 <script setup>
+import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '../stores/user.js';
 import Button from 'primevue/button';
+import axios from "axios";
 
+let selectedFormation = null;
+let formations = [];
 const router = useRouter();
 const userStore = useUserStore();
 const user = userStore.currentUser;
-let selectedFormation = '4-3-3';
+// let selectedFormation = '4-3-3';
+
+onMounted(async () => {
+    await fetchFormations();
+});
+
+async function fetchFormations() {
+    try {
+        const response = await axios.get('https://www.mockachino.com/6c00860e-b7b1-4f/formations');
+        formations = response.data.formations.map((formation) => ({
+            key: formation.id,
+            value: formation.description,
+        }));
+    } catch (error) {
+        console.error('Error fetching formations:', error);
+    }
+}
 
 function logout() {
     userStore.logout();
