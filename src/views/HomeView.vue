@@ -10,12 +10,6 @@
 import PlayerInfoBar from '../components/PlayerInfoBar.vue';
 import UserInfoBar from '../components/UserInfoBar.vue';
 import Field from '../components/Field.vue';
-import { ref } from 'vue';
-import { usePlayerStore } from '../stores/player';
-
-const playerStore = usePlayerStore();
-
-const previousPlayerId = ref(null);
 </script>
 
 <style scoped>

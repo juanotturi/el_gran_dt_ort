@@ -12,11 +12,8 @@
 
 <script setup>
 import Player from './Player.vue';
-import { ref, onMounted} from 'vue';
+import { ref, onMounted } from 'vue';
 import axios from 'axios';
-import { usePlayerStore } from '../stores/player.js';
-
-const playerStore = usePlayerStore();
 
 const selectedPlayerId = ref(null);
 const players = ref(null);
@@ -56,13 +53,8 @@ const isSelected = (playerId) => {
   return selectedPlayerId.value === playerId;
 };
 
-// const selectPlayer = (playerId) => {
-//   selectedPlayerId.value = playerId;
-// };
-
 const selectPlayer = (playerId) => {
-  playerStore.dispatch('updatePreviousPlayerId', playerStore.getSelectedPlayerId);
-  playerStore.commit('setSelectedPlayerId', playerId);
+  selectedPlayerId.value = playerId;
 };
 
 onMounted(async () => {
