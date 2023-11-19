@@ -32,9 +32,13 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref } from 'vue';
 import Button from 'primevue/button';
 import axios from 'axios';
+import { usePlayerStore } from '../stores/player';
+
+const playerStore = usePlayerStore();
+
 const showList = ref(false);
 const selectedPlayer = ref(null);
 const previousPlayer = ref(null);
@@ -51,6 +55,7 @@ async function openList() {
 
 async function getPlayers() {
     try {
+        console.log(previousPlayer)
         const response = await axios.get("https://www.mockachino.com/e17428de-e644-4e/players");
         players = response.data.players
     } catch (error) {
