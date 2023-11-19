@@ -11,10 +11,11 @@
 </template>
 
 <script setup>
-import Player from './Player.vue';
-import { ref, onMounted } from 'vue';
-import axios from 'axios';
-
+import Player from "./Player.vue";
+import { ref, onMounted } from "vue";
+import axios from "axios";
+import { usePlayerStore } from "../stores/playerStore.js";
+const playerStore = usePlayerStore();
 const selectedPlayerId = ref(null);
 const players = ref(null);
 const playersTeam = ref([
@@ -31,18 +32,28 @@ const playersTeam = ref([
   { id: 11 },
 ]);
 
-const formation = ref('4-3-3');
+const formation = ref("4-3-3");
 const formationMappings = ref([]);
 
 const getPlayerUbication = async (playerId) => {
-  const formationResponse = await axios.get('https://www.mockachino.com/6c00860e-b7b1-4f/formations');
-  formationMappings.value = formationResponse.data.formations.reduce((acc, formation) => {
-    acc[formation.description] = formation.ubications.coordinates;
-    return acc;
-  }, {});
-  const playerIndex = playersTeam.value.findIndex((player) => player.id === playerId);
+  const formationResponse = await axios.get(
+    "https://www.mockachino.com/6c00860e-b7b1-4f/formations"
+  );
+  formationMappings.value = formationResponse.data.formations.reduce(
+    (acc, formation) => {
+      acc[formation.description] = formation.ubications.coordinates;
+      return acc;
+    },
+    {}
+  );
+  const playerIndex = playersTeam.value.findIndex(
+    (player) => player.id === playerId
+  );
   if (formationMappings.value[formation.value]) {
-    const playerUbication = {x: formationMappings.value[formation.value][playerIndex].x, y: formationMappings.value[formation.value][playerIndex].y};
+    const playerUbication = {
+      x: formationMappings.value[formation.value][playerIndex].x,
+      y: formationMappings.value[formation.value][playerIndex].y,
+    };
     return playerUbication || { x: 0, y: 0 };
   } else {
     return { x: 0, y: 0 };
@@ -54,18 +65,21 @@ const isSelected = (playerId) => {
 };
 
 const selectPlayer = (playerId) => {
+  playerStore.setFieldPlayerId(playerId);
   selectedPlayerId.value = playerId;
 };
 
 onMounted(async () => {
   try {
-    const response = await axios.get('https://www.mockachino.com/e17428de-e644-4e/players');
+    const response = await axios.get(
+      "https://www.mockachino.com/e17428de-e644-4e/players"
+    );
     players.value = response.data.players;
     if (!formationMappings.value[formation.value]) {
       console.error(`Formation ${formation.value} not found in mappings.`);
     }
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error("Error fetching data:", error);
   }
 });
 </script>

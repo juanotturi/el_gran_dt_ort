@@ -19,7 +19,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { useUserStore } from '../stores/user.js';
+import { useUserStore } from '../stores/userStore.js';
 import Button from 'primevue/button';
 
 const mail = ref('');

@@ -1,69 +1,95 @@
 <template>
-    <div class="right-panel">
-        <div class="logo-container">
-            <img width="150" src="../assets/logo_gran_dt_ort.png" alt="logo"
-                style="margin-top: -18px; margin-bottom: -18px;" />
-        </div>
-        <div class="panel-item">
-            <p>Nombre:<br>{{ selectedPlayer ? selectedPlayer.name : '' }}</p>
-        </div>
-        <div class="divider"></div>
-        <div class="panel-item">
-            <p>Club:<br>{{ selectedPlayer ? selectedPlayer.club : '' }}</p>
-        </div>
-        <div class="divider"></div>
-        <div class="panel-item">
-            <p>Cotización:<br>{{ selectedPlayer ? selectedPlayer.price : '' }}</p>
-        </div>
-        <div class="divider"></div>
-        <div>
-            <Button @click="openList" class="fixed-width-button" label="Buscar" severity="info" />
-        </div><br>
-        <div class="custom-list" v-if="showList">
-            <a v-for="player in players" :key="player.id" href="#" class="list-group-item list-group-item-action"
-                @click="setPlayer(player)" :class="{ 'selected': player }">
-                {{ player.name }}
-            </a>
-        </div>
-        <div v-if="showList">
-            <Button @click="changePlayer(selectedPlayer)" class=" fixed-width-button" label="Elegir" severity="info" />
-        </div><br>
+  <div class="right-panel">
+    <div class="logo-container">
+      <img
+        width="150"
+        src="../assets/logo_gran_dt_ort.png"
+        alt="logo"
+        style="margin-top: -18px; margin-bottom: -18px"
+      />
     </div>
+    <div class="panel-item">
+      <p>Nombre:<br />{{ selectedPlayer ? selectedPlayer.name : "" }}</p>
+    </div>
+    <div class="divider"></div>
+    <div class="panel-item">
+      <p>Club:<br />{{ selectedPlayer ? selectedPlayer.club : "" }}</p>
+    </div>
+    <div class="divider"></div>
+    <div class="panel-item">
+      <p>Cotización:<br />{{ selectedPlayer ? selectedPlayer.price : "" }}</p>
+    </div>
+    <div class="divider"></div>
+    <div>
+      <Button
+        @click="openList"
+        class="fixed-width-button"
+        label="Buscar"
+        severity="info"
+      />
+    </div>
+    <br />
+    <div class="custom-list" v-if="showList">
+      <a
+        v-for="player in players"
+        :key="player.id"
+        href="#"
+        class="list-group-item list-group-item-action"
+        @click="setPlayer(player)"
+        :class="{ selected: player }"
+      >
+        {{ player.name }}
+      </a>
+    </div>
+    <div v-if="showList">
+      <Button
+        @click="changePlayer(selectedPlayer)"
+        class="fixed-width-button"
+        label="Elegir"
+        severity="info"
+      />
+    </div>
+    <br />
+  </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import Button from 'primevue/button';
-import axios from 'axios';
+import Button from "primevue/button";
+import axios from "axios";
+import { usePlayerStore } from "../stores/playerStore.js";
 const showList = ref(false);
 const selectedPlayer = ref(null);
-const previousPlayer = ref(null);
-let players = [];
+const playerStore = usePlayerStore();
+const fieldPlayer = ref(null);
 
+let players = [];
 async function openList() {
-    if (!showList.value) {
-        await getPlayers();
-        showList.value = true;
-    } else {
-        showList.value = false;
-    }
+  if (!showList.value) {
+    await getPlayers();
+    showList.value = true;
+  } else {
+    showList.value = false;
+  }
 }
 
 async function getPlayers() {
-    try {
-        const response = await axios.get("https://www.mockachino.com/e17428de-e644-4e/players");
-        players = response.data.players
-    } catch (error) {
-        console.error('Error al obtener datos de jugadores:', error);
-    }
+  try {
+    const response = await axios.get(
+      "https://www.mockachino.com/e17428de-e644-4e/players"
+    );
+    players = response.data.players;
+  } catch (error) {
+    console.error("Error al obtener datos de jugadores:", error);
+  }
 }
 
 function setPlayer(player) {
-    selectedPlayer.value = player;
+  selectedPlayer.value = player;
 }
 
-function changePlayer(player) {
-    window.confirm(`¿Desea cambiar a ${player.name} por ${previousPlayer}?`)
+async function changePlayer(player) {
+  window.confirm(`¿Desea cambiar a ${fieldPlayer} por ${player.name}?`);
 }
 </script>
 
@@ -71,6 +97,6 @@ function changePlayer(player) {
 @import url("@/assets/estilos.css");
 
 .selected {
-    background-color: white;
+  background-color: white;
 }
 </style>
