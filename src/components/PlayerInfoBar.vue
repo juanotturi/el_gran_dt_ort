@@ -37,6 +37,7 @@ import Button from 'primevue/button';
 import axios from 'axios';
 const showList = ref(false);
 const selectedPlayer = ref(null);
+const previousPlayer = ref(null);
 let players = [];
 
 async function openList() {
@@ -62,7 +63,7 @@ function setPlayer(player) {
 }
 
 function changePlayer(player) {
-    window.confirm(`¿Desea cambiar a ${player.name} por el jugador anterior?`)
+    window.confirm(`¿Desea cambiar a ${player.name} por ${previousPlayer}?`)
 }
 </script>
 
