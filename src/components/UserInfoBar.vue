@@ -32,27 +32,28 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted ,ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '../stores/user.js';
 import Button from 'primevue/button';
 import axios from "axios";
 
-let selectedFormation = null;
-let formations = [];
+//let selectedFormation = null;
+let formations = ref(null)
 const router = useRouter();
 const userStore = useUserStore();
 const user = userStore.currentUser;
-// let selectedFormation = '4-3-3';
+let selectedFormation = '4-3-3';
 
 onMounted(async () => {
     await fetchFormations();
+    selectedFormation = formations.value[0].value;
 });
 
 async function fetchFormations() {
     try {
         const response = await axios.get('https://www.mockachino.com/6c00860e-b7b1-4f/formations');
-        formations = response.data.formations.map((formation) => ({
+        formations.value = response.data.formations.map((formation) => ({
             key: formation.id,
             value: formation.description,
         }));
