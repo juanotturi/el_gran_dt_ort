@@ -9,8 +9,7 @@ export const usePlayerStore = defineStore("playerStore", () => {
   async function setFieldPlayerId(id) {
     _fieldPlayerId.value = id;
     _currentPlayer.value = await getPlayerById(_fieldPlayerId.value);
-    currentUser = _currentPlayer;
-    console.log(_currentPlayer.value);
+    currentPlayer = _currentPlayer;
   }
 
   async function getPlayerById(playerId) {
@@ -40,13 +39,13 @@ export const usePlayerStore = defineStore("playerStore", () => {
   const fieldPlayerId = computed(() => ({
     fieldPlayerId: _fieldPlayerId,
   }));
-  let currentUser = computed(() => ({
-    currentUser: _currentPlayer,
+  let currentPlayer = computed(() => ({
+    currentPlayer: _currentPlayer,
   }));
 
   return {
     fieldPlayerId,
-    currentUser,
+    currentPlayer,
     setFieldPlayerId,
     fieldPlayerNull,
   };

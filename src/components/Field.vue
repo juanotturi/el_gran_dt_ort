@@ -67,8 +67,7 @@ const isSelected = (playerId) => {
 
 const selectPlayer = async (playerId) => {
   await playerStore.setFieldPlayerId(playerId);
-  selectedPlayer = playerStore.currentUser.currentUser.value;
-  console.log(selectedPlayer);
+  selectedPlayer = playerStore.currentPlayer.currentPlayer.value;
   selectedPlayerId.value = playerId;
 };
 

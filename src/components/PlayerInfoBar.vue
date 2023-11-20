@@ -62,11 +62,16 @@ const showList = ref(false);
 const selectedPlayer = ref(null);
 const playerStore = usePlayerStore();
 let fieldPlayer = ref(null);
-
 let players = [];
+
 async function openList() {
+  fieldPlayer = playerStore.currentPlayer.currentPlayer.value;
   if (!showList.value) {
-    await getPlayers();
+    if (fieldPlayer == null) {
+      await getPlayers();
+    } else {
+      await getPlayersPosition(fieldPlayer.position);
+    }
     showList.value = true;
   } else {
     showList.value = false;
@@ -84,14 +89,28 @@ async function getPlayers() {
   }
 }
 
+async function getPlayersPosition(position) {
+  try {
+    await getPlayers();
+    let playersProv = players.filter((player) => player.position === position);
+    players = playersProv;
+  } catch (error) {
+    console.error("Error al obtener datos de jugadores:", error);
+    throw error;
+  }
+}
+
 function setPlayer(player) {
   selectedPlayer.value = player;
 }
 
 function changePlayer(player) {
-  fieldPlayer = playerStore.currentUser.currentUser.value;
-  console.log(fieldPlayer);
-  window.confirm(`¿Desea cambiar a ${fieldPlayer.name} por ${player.name}?`);
+  fieldPlayer = playerStore.currentPlayer.currentPlayer.value;
+  if (player != null) {
+    window.confirm(`¿Desea cambiar a ${fieldPlayer.name} por ${player.name}?`);
+  } else {
+    alert("No ha seleccionado ningún jugador de la lista");
+  }
 }
 </script>
 
