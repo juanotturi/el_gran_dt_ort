@@ -70,7 +70,7 @@ async function openList() {
     if (fieldPlayer == null) {
       await getPlayers();
     } else {
-      await getPlayersPosition(fieldPlayer.position);
+      await getPlayersPosition(fieldPlayer.position, fieldPlayer.id);
     }
     showList.value = true;
   } else {
@@ -89,10 +89,11 @@ async function getPlayers() {
   }
 }
 
-async function getPlayersPosition(position) {
+async function getPlayersPosition(position, id) {
   try {
     await getPlayers();
     let playersProv = players.filter((player) => player.position === position);
+    playersProv = playersProv.filter((player) => player.id !== id);
     players = playersProv;
   } catch (error) {
     console.error("Error al obtener datos de jugadores:", error);
