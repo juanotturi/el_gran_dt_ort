@@ -16,7 +16,8 @@ import { ref, onMounted } from "vue";
 import axios from "axios";
 import { usePlayerStore } from "../stores/playerStore.js";
 const playerStore = usePlayerStore();
-const selectedPlayerId = ref(null);
+let selectedPlayerId = ref(null);
+let selectedPlayer = ref(null);
 const players = ref(null);
 const playersTeam = ref([
   { id: 1 },
@@ -64,8 +65,10 @@ const isSelected = (playerId) => {
   return selectedPlayerId.value === playerId;
 };
 
-const selectPlayer = (playerId) => {
-  playerStore.setFieldPlayerId(playerId);
+const selectPlayer = async (playerId) => {
+  await playerStore.setFieldPlayerId(playerId);
+  selectedPlayer = playerStore.currentUser.currentUser.value;
+  console.log(selectedPlayer);
   selectedPlayerId.value = playerId;
 };
 

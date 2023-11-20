@@ -61,7 +61,7 @@ import { usePlayerStore } from "../stores/playerStore.js";
 const showList = ref(false);
 const selectedPlayer = ref(null);
 const playerStore = usePlayerStore();
-const fieldPlayer = ref(null);
+let fieldPlayer = ref(null);
 
 let players = [];
 async function openList() {
@@ -88,8 +88,10 @@ function setPlayer(player) {
   selectedPlayer.value = player;
 }
 
-async function changePlayer(player) {
-  window.confirm(`¿Desea cambiar a ${fieldPlayer} por ${player.name}?`);
+function changePlayer(player) {
+  fieldPlayer = playerStore.currentUser.currentUser.value;
+  console.log(fieldPlayer);
+  window.confirm(`¿Desea cambiar a ${fieldPlayer.name} por ${player.name}?`);
 }
 </script>
 

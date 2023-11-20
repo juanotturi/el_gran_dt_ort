@@ -38,7 +38,6 @@ import { useUserStore } from '../stores/userStore.js';
 import Button from 'primevue/button';
 import axios from "axios";
 
-//let selectedFormation = null;
 let formations = ref(null)
 const router = useRouter();
 const userStore = useUserStore();

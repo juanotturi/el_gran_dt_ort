@@ -1,15 +1,16 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import axios from "axios";
 
 export const usePlayerStore = defineStore("playerStore", () => {
   let _fieldPlayerId = ref(null);
-  let currentPlayer = ref(null);
+  let _currentPlayer = ref(null);
 
   async function setFieldPlayerId(id) {
-    _fieldPlayerId = id;
-    currentPlayer = await getPlayerById(_fieldPlayerId);
-    console.log(currentPlayer);
+    _fieldPlayerId.value = id;
+    _currentPlayer.value = await getPlayerById(_fieldPlayerId.value);
+    currentUser = _currentPlayer;
+    console.log(_currentPlayer.value);
   }
 
   async function getPlayerById(playerId) {
@@ -33,5 +34,20 @@ export const usePlayerStore = defineStore("playerStore", () => {
     }
   }
 
-  return { _fieldPlayerId, setFieldPlayerId, getPlayerById, currentPlayer };
+  const fieldPlayerNull = computed(() => ({
+    fieldPlayerNull: _fieldPlayerId == null && _currentPlayer == null,
+  }));
+  const fieldPlayerId = computed(() => ({
+    fieldPlayerId: _fieldPlayerId,
+  }));
+  let currentUser = computed(() => ({
+    currentUser: _currentPlayer,
+  }));
+
+  return {
+    fieldPlayerId,
+    currentUser,
+    setFieldPlayerId,
+    fieldPlayerNull,
+  };
 });
