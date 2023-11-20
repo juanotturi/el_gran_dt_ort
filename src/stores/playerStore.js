@@ -33,10 +33,10 @@ export const usePlayerStore = defineStore("playerStore", () => {
     }
   }
 
-  const fieldPlayerNull = computed(() => ({
+  let fieldPlayerNull = computed(() => ({
     fieldPlayerNull: _fieldPlayerId == null && _currentPlayer == null,
   }));
-  const fieldPlayerId = computed(() => ({
+  let fieldPlayerId = computed(() => ({
     fieldPlayerId: _fieldPlayerId,
   }));
   let currentPlayer = computed(() => ({

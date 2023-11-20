@@ -7,9 +7,9 @@
 </template>
 
 <script setup>
-import PlayerInfoBar from '../components/PlayerInfoBar.vue';
-import UserInfoBar from '../components/UserInfoBar.vue';
-import Field from '../components/Field.vue';
+import PlayerInfoBar from "../components/PlayerInfoBar.vue";
+import UserInfoBar from "../components/UserInfoBar.vue";
+import Field from "../components/Field.vue";
 </script>
 
 <style scoped>

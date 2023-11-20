@@ -15,7 +15,9 @@ import Player from "./Player.vue";
 import { ref, onMounted } from "vue";
 import axios from "axios";
 import { usePlayerStore } from "../stores/playerStore.js";
+import { useTeamStore } from "../stores/teamStore";
 const playerStore = usePlayerStore();
+const teamStore = useTeamStore();
 let selectedPlayerId = ref(null);
 let selectedPlayer = ref(null);
 const players = ref(null);
@@ -80,6 +82,10 @@ onMounted(async () => {
     if (!formationMappings.value[formation.value]) {
       console.error(`Formation ${formation.value} not found in mappings.`);
     }
+    let playersInTeam = players.value.filter((player) =>
+      playersTeam.value.some((teamPlayer) => teamPlayer.id === player.id)
+    );
+    teamStore.calcularPrecioTotal(playersInTeam);
   } catch (error) {
     console.error("Error fetching data:", error);
   }

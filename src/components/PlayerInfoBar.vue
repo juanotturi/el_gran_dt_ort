@@ -58,6 +58,7 @@ import { ref } from "vue";
 import Button from "primevue/button";
 import axios from "axios";
 import { usePlayerStore } from "../stores/playerStore.js";
+import { useTeamStore } from "../stores/teamStore";
 const showList = ref(false);
 const selectedPlayer = ref(null);
 const playerStore = usePlayerStore();
@@ -70,7 +71,7 @@ async function openList() {
     if (fieldPlayer == null) {
       await getPlayers();
     } else {
-      await getPlayersPosition(fieldPlayer.position, fieldPlayer.id);
+      await getPlayersByPosition(fieldPlayer.position, fieldPlayer.id);
     }
     showList.value = true;
   } else {
@@ -89,7 +90,7 @@ async function getPlayers() {
   }
 }
 
-async function getPlayersPosition(position, id) {
+async function getPlayersByPosition(position, id) {
   try {
     await getPlayers();
     let playersProv = players.filter((player) => player.position === position);

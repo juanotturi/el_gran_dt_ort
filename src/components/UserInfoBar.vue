@@ -13,7 +13,7 @@
         </div>
         <div class="divider"></div>
         <div class="panel-item">
-            <p>Cotización total:<br>---</p>
+            <p>Cotización total:<br>$ {{ teamStore.teamPrice.teamPrice.value }}</p>
         </div>
         <div class="divider"></div>
         <div class="panel-item">
@@ -35,12 +35,14 @@
 import { onMounted ,ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '../stores/userStore.js';
+import { useTeamStore } from '../stores/teamStore.js';
 import Button from 'primevue/button';
 import axios from "axios";
 
-let formations = ref(null)
+let formations = ref(null);
 const router = useRouter();
 const userStore = useUserStore();
+const teamStore = useTeamStore();
 const user = userStore.currentUser;
 let selectedFormation = '4-3-3';
 
