@@ -3,6 +3,12 @@ import { ref, computed } from "vue";
 
 export const useTeamStore = defineStore("teamStore", () => {
   let _teamPrice = ref(0);
+  let _teamFormation = ref(null);
+
+  function setTeamFormation(formation) {
+    _teamFormation = formation;
+    console.log(_teamFormation);
+  }
 
   async function calcularPrecioTotal(playersArray) {
     _teamPrice.value = await playersArray.reduce(
@@ -12,12 +18,18 @@ export const useTeamStore = defineStore("teamStore", () => {
     teamPrice = _teamPrice;
   }
 
+  let teamFormation = computed(() => ({
+    teamFormation: _teamFormation,
+  }));
+
   let teamPrice = computed(() => ({
     teamPrice: _teamPrice,
   }));
 
   return {
     teamPrice,
+    teamFormation,
+    setTeamFormation,
     calcularPrecioTotal,
   };
 });

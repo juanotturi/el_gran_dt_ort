@@ -1,12 +1,7 @@
 <template>
   <div class="right-panel">
     <div class="logo-container">
-      <img
-        width="150"
-        src="../assets/logo_gran_dt_ort.png"
-        alt="logo"
-        style="margin-top: -18px; margin-bottom: -18px"
-      />
+      <img width="150" src="../assets/logo_gran_dt_ort.png" alt="logo" style="margin-top: -18px; margin-bottom: -18px" />
     </div>
     <div class="panel-item">
       <p>Nombre:<br />{{ selectedPlayer ? selectedPlayer.name : "" }}</p>
@@ -17,37 +12,21 @@
     </div>
     <div class="divider"></div>
     <div class="panel-item">
-      <p>Cotización:<br />{{ selectedPlayer ? selectedPlayer.price : "" }}</p>
+      <p>Cotización:<br />$ {{ selectedPlayer ? selectedPlayer.price : "" }}</p>
     </div>
     <div class="divider"></div>
     <div>
-      <Button
-        @click="openList"
-        class="fixed-width-button"
-        label="Buscar"
-        severity="info"
-      />
+      <Button @click="openList" class="fixed-width-button" label="Buscar" severity="info" />
     </div>
     <br />
     <div class="custom-list" v-if="showList">
-      <a
-        v-for="player in players"
-        :key="player.id"
-        href="#"
-        class="list-group-item list-group-item-action"
-        @click="setPlayer(player)"
-        :class="{ selected: player }"
-      >
+      <a v-for="player in players" :key="player.id" href="#" class="list-group-item list-group-item-action"
+        @click="setPlayer(player)" :class="{ selected: player }">
         {{ player.name }}
       </a>
     </div>
     <div v-if="showList">
-      <Button
-        @click="changePlayer(selectedPlayer)"
-        class="fixed-width-button"
-        label="Elegir"
-        severity="info"
-      />
+      <Button @click="changePlayer(selectedPlayer)" class="fixed-width-button" label="Elegir" severity="info" />
     </div>
     <br />
   </div>

@@ -19,7 +19,7 @@
         <div class="panel-item">
             <p>
             <p for="formation">Formación:</p>
-            <select v-model="selectedFormation" id="formation">
+            <select v-model="selectedFormation" id="formation" @change="handleFormationChange">
                 <option v-for="formation in formations" :key="formation.key" :value="formation.value">
                     {{ formation.value }}
                 </option>
@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-import { onMounted ,ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '../stores/userStore.js';
 import { useTeamStore } from '../stores/teamStore.js';
@@ -44,12 +44,14 @@ const router = useRouter();
 const userStore = useUserStore();
 const teamStore = useTeamStore();
 const user = userStore.currentUser;
-let selectedFormation = '4-3-3';
+let selectedFormation;
 
-onMounted(async () => {
-    await fetchFormations();
-    selectedFormation = formations.value[0].value;
-});
+function handleFormationChange() {
+    if (window.confirm(`¿Esta seguro que desea cambiar su formación a ${selectedFormation}? Deberá armar su equipo nuevamente`)) {
+        teamStore.setTeamFormation(selectedFormation)
+    }
+    console.log(selectedFormation);
+}
 
 async function fetchFormations() {
     try {
@@ -62,6 +64,13 @@ async function fetchFormations() {
         console.error('Error fetching formations:', error);
     }
 }
+
+onMounted(async () => {
+    await fetchFormations();
+    selectedFormation = formations.value[0].value;
+    teamStore.setTeamFormation(selectedFormation)
+    console.log(selectedFormation)
+});
 
 function logout() {
     userStore.logout();

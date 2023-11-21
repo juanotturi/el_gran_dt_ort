@@ -1,13 +1,7 @@
 <template>
   <img class="cancha" src="../assets/cancha.png" />
-  <Player
-    v-for="player in playersTeam"
-    :key="player.id"
-    :id="player.id"
-    :ubication="getPlayerUbication(player.id)"
-    :style="{ backgroundColor: isSelected(player.id) ? '#00D8D8' : 'white' }"
-    @click="selectPlayer(player.id)"
-  />
+  <Player v-for="player in playersTeam" :key="player.id" :id="player.id" :ubication="getPlayerUbication(player.id)"
+    :style="{ backgroundColor: isSelected(player.id) ? '#00D8D8' : 'white' }" @click="selectPlayer(player.id)" />
 </template>
 
 <script setup>
@@ -35,8 +29,8 @@ const playersTeam = ref([
   { id: 11 },
 ]);
 
-const formation = ref("4-3-3");
-const formationMappings = ref([]);
+let formation = ref('4-3-3');
+let formationMappings = ref([]);
 
 const getPlayerUbication = async (playerId) => {
   const formationResponse = await axios.get(
@@ -85,6 +79,8 @@ onMounted(async () => {
     let playersInTeam = players.value.filter((player) =>
       playersTeam.value.some((teamPlayer) => teamPlayer.id === player.id)
     );
+    formation = teamStore.teamFormation;
+    console.log(formation);
     teamStore.calcularPrecioTotal(playersInTeam);
   } catch (error) {
     console.error("Error fetching data:", error);
