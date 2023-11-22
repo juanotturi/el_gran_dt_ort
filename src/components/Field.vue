@@ -15,6 +15,7 @@ const playerStore = usePlayerStore();
 const teamStore = useTeamStore();
 let selectedPlayerId = ref(null);
 let selectedPlayer = ref(null);
+let formationsList;
 const players = ref(null);
 const playersTeam = ref([
   { id: 1 },
@@ -47,6 +48,7 @@ const getPlayerUbication = async (playerId) => {
   const playerIndex = playersTeam.value.findIndex(
     (player) => player.id === playerId
   );
+  formationsList = formationResponse
   if (formationMappings.value[formation.value]) {
     const playerUbication = {
       x: formationMappings.value[formation.value][playerIndex].x,
@@ -64,6 +66,10 @@ const isSelected = (playerId) => {
 
 const selectPlayer = async (playerId) => {
   await playerStore.setFieldPlayerId(playerId);
+  let playerIndex = playersTeam.value.findIndex(
+    (player) => player.id === playerId
+  );
+  teamStore.setPositionUbic(formationsList.data.formations[0].ubications.coordinates[playerIndex].position)
   selectedPlayer = playerStore.currentPlayer.currentPlayer.value;
   selectedPlayerId.value = playerId;
 };

@@ -40,15 +40,21 @@ import { usePlayerStore } from "../stores/playerStore.js";
 import { useTeamStore } from "../stores/teamStore";
 const showList = ref(false);
 const selectedPlayer = ref(null);
+const teamStore = useTeamStore()
 const playerStore = usePlayerStore();
 let fieldPlayer = ref(null);
 let players = [];
 
 async function openList() {
   fieldPlayer = playerStore.currentPlayer.currentPlayer.value;
+  let positionUbic = teamStore.positionUbic;
+  console.log(positionUbic.positionUbic)
   if (!showList.value) {
-    if (fieldPlayer || fieldPlayer == null) {
+    console.log(fieldPlayer)
+    if (fieldPlayer == null) {
       await getPlayers();
+    } else if (fieldPlayer.id == 0) {
+      await getPlayersByPosition(positionUbic.positionUbic, fieldPlayer.id)
     } else {
       await getPlayersByPosition(fieldPlayer.position, fieldPlayer.id);
     }
