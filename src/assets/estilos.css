@@ -5,15 +5,18 @@ body {
   background-size: cover;
   background-position: center;
 }
+
 .centered-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 .titulo {
   color: yellow;
 }
+
 .logo {
   position: fixed;
   top: 32%;
@@ -122,8 +125,20 @@ body {
   height: auto;
   text-align: center;
   border-radius: 4px;
-  background-color: white;
+  background-color: white !important;
   color: black;
+  font-size: 11px;
+}
+
+.player-card-null {
+  position: absolute;
+  border: 1px solid #ddd;
+  padding: 2px;
+  height: auto;
+  text-align: center;
+  border-radius: 4px;
+  background-color: dimgray !important;
+  color: dimgray;
   font-size: 11px;
 }
 

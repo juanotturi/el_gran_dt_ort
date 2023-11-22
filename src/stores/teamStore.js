@@ -7,7 +7,6 @@ export const useTeamStore = defineStore("teamStore", () => {
 
   function setTeamFormation(formation) {
     _teamFormation = formation;
-    console.log(_teamFormation);
   }
 
   async function calcularPrecioTotal(playersArray) {

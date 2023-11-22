@@ -1,24 +1,21 @@
 <template>
-  <div
-    v-if="player"
-    class="player-card"
-    :style="{ left: player.ubication.x + 'px', top: player.ubication.y + 'px' }"
-  >
+  <div v-if="player" :class="{ 'player-card': player.id !== 0, 'player-card-null': player.id === 0 }"
+    :style="{ left: player.ubication.x + 'px', top: player.ubication.y + 'px' }">
     <img :src="player.img" :alt="player.name" class="player-image" /><br />
     {{ player.name }}<br />
     {{ player.club }}<br />
     {{
       player.position === "arquero"
-        ? "ARQ"
-        : player.position === "defensor"
+      ? "ARQ"
+      : player.position === "defensor"
         ? "DEF"
         : player.position === "volante"
-        ? "VOL"
-        : player.position === "delantero"
-        ? "DEL"
-        : "POSICIÓN DESCONOCIDA"
+          ? "VOL"
+          : player.position === "delantero"
+            ? "DEL"
+            : "ELIJA JUGADOR"
     }}<br />
-    $ {{ player.price }}
+    {{ player.id === 0 ? '___' : '$ ' + player.price }}
   </div>
   <div v-else>
     <p>Cargando jugador...</p>

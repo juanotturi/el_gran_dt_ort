@@ -1,7 +1,8 @@
 <template>
   <img class="cancha" src="../assets/cancha.png" />
   <Player v-for="player in playersTeam" :key="player.id" :id="player.id" :ubication="getPlayerUbication(player.id)"
-    :style="{ backgroundColor: isSelected(player.id) ? '#00D8D8' : 'white' }" @click="selectPlayer(player.id)" />
+    :style="{ backgroundColor: isSelected(player.id) ? '#00D8D8 !important' : 'white' }"
+    @click="selectPlayer(player.id)" />
 </template>
 
 <script setup>
@@ -20,7 +21,7 @@ const playersTeam = ref([
   { id: 2 },
   { id: 3 },
   { id: 4 },
-  { id: 5 },
+  { id: 0 },
   { id: 6 },
   { id: 7 },
   { id: 8 },
@@ -80,7 +81,6 @@ onMounted(async () => {
       playersTeam.value.some((teamPlayer) => teamPlayer.id === player.id)
     );
     formation = teamStore.teamFormation;
-    console.log(formation);
     teamStore.calcularPrecioTotal(playersInTeam);
   } catch (error) {
     console.error("Error fetching data:", error);

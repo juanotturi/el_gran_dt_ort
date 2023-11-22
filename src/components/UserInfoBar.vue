@@ -50,7 +50,6 @@ function handleFormationChange() {
     if (window.confirm(`¿Esta seguro que desea cambiar su formación a ${selectedFormation}? Deberá armar su equipo nuevamente`)) {
         teamStore.setTeamFormation(selectedFormation)
     }
-    console.log(selectedFormation);
 }
 
 async function fetchFormations() {
@@ -69,7 +68,6 @@ onMounted(async () => {
     await fetchFormations();
     selectedFormation = formations.value[0].value;
     teamStore.setTeamFormation(selectedFormation)
-    console.log(selectedFormation)
 });
 
 function logout() {
