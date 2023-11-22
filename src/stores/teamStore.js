@@ -4,12 +4,6 @@ import { ref, computed } from "vue";
 export const useTeamStore = defineStore("teamStore", () => {
   let _teamPrice = ref(0);
   let _teamFormation = ref(null);
-  let _positionUbic = ref(null);
-
-  async function setPositionUbic(position) {
-    _positionUbic = position;
-    console.log(_positionUbic);
-  }
 
   function setTeamFormation(formation) {
     _teamFormation = formation;
@@ -38,9 +32,7 @@ export const useTeamStore = defineStore("teamStore", () => {
   return {
     teamPrice,
     teamFormation,
-    setPositionUbic,
     setTeamFormation,
     calcularPrecioTotal,
-    positionUbic,
   };
 });
