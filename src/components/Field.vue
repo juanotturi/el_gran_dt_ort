@@ -30,17 +30,17 @@ const playersTeam = ref([
   { id: 11 },
 ]);
 
-let formation = ref('4-3-3');
+let formation = ref('4-4-2');
 let formationMappings = ref([]);
 
 function getPlayerStyle(playerId) {
   if (playerId !== 0) {
     return {
-      backgroundColor: this.isSelected(playerId) ? '#00D8D8 !important' : 'white',
+      backgroundColor: isSelected(playerId) ? '#00D8D8 !important' : 'white',
     };
   } else {
     return {
-      backgroundColor: this.isSelected(playerId) ? '#00D8D8 !important' : 'dimgray',
+      backgroundColor: isSelected(playerId) ? '#00D8D8 !important' : 'dimgray',
     };
   }
 };
@@ -71,7 +71,7 @@ const getPlayerUbication = async (playerId) => {
   }
 };
 
-const isSelected = (playerId) => {
+function isSelected(playerId) {
   return selectedPlayerId.value === playerId;
 };
 
@@ -79,7 +79,7 @@ const selectPlayer = async (playerId) => {
   let playerIndex = playersTeam.value.findIndex(
     (player) => player.id === playerId
   );
-  await playerStore.setFieldPlayerId(playerId, formationsList.data.formations[0].ubications.coordinates[playerIndex].position);
+  await playerStore.setFieldPlayerId(playerId, formationsList.data.formations[2].ubications.coordinates[playerIndex].position);
   selectedPlayer = playerStore.currentPlayer.currentPlayer.value;
   selectedPlayerId.value = playerId;
 };

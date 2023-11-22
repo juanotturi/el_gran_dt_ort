@@ -66,7 +66,7 @@ async function fetchFormations() {
 
 onMounted(async () => {
     await fetchFormations();
-    selectedFormation = formations.value[0].value;
+    selectedFormation = formations.value[2].value;
     teamStore.setTeamFormation(selectedFormation)
 });
 
