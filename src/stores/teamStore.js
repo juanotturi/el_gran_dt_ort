@@ -6,7 +6,7 @@ export const useTeamStore = defineStore("teamStore", () => {
   let _teamFormation = ref(null);
   let _positionUbic = ref(null);
 
-  function setPositionUbic(position) {
+  async function setPositionUbic(position) {
     _positionUbic = position;
     console.log(_positionUbic);
   }

@@ -5,10 +5,13 @@ import axios from "axios";
 export const usePlayerStore = defineStore("playerStore", () => {
   let _fieldPlayerId = ref(null);
   let _currentPlayer = ref(null);
+  let _fieldPosition = ref(null);
 
-  async function setFieldPlayerId(id) {
+  async function setFieldPlayerId(id, position) {
     _fieldPlayerId.value = id;
+    _fieldPosition.value = position;
     _currentPlayer.value = await getPlayerById(_fieldPlayerId.value);
+    fieldPosition = _fieldPosition;
     currentPlayer = _currentPlayer;
   }
 
@@ -36,15 +39,22 @@ export const usePlayerStore = defineStore("playerStore", () => {
   let fieldPlayerNull = computed(() => ({
     fieldPlayerNull: _fieldPlayerId == null && _currentPlayer == null,
   }));
+
   let fieldPlayerId = computed(() => ({
     fieldPlayerId: _fieldPlayerId,
   }));
+
+  let fieldPosition = computed(() => ({
+    fieldPosition: _fieldPosition,
+  }));
+
   let currentPlayer = computed(() => ({
     currentPlayer: _currentPlayer,
   }));
 
   return {
     fieldPlayerId,
+    fieldPosition,
     currentPlayer,
     setFieldPlayerId,
     fieldPlayerNull,

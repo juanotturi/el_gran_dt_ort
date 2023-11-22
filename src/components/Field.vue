@@ -65,11 +65,11 @@ const isSelected = (playerId) => {
 };
 
 const selectPlayer = async (playerId) => {
-  await playerStore.setFieldPlayerId(playerId);
   let playerIndex = playersTeam.value.findIndex(
     (player) => player.id === playerId
   );
-  teamStore.setPositionUbic(formationsList.data.formations[0].ubications.coordinates[playerIndex].position)
+  await playerStore.setFieldPlayerId(playerId, formationsList.data.formations[0].ubications.coordinates[playerIndex].position);
+  // teamStore.setPositionUbic(formationsList.data.formations[0].ubications.coordinates[playerIndex].position);
   selectedPlayer = playerStore.currentPlayer.currentPlayer.value;
   selectedPlayerId.value = playerId;
 };
