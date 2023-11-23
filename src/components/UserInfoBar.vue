@@ -44,7 +44,7 @@ const router = useRouter();
 const userStore = useUserStore();
 const teamStore = useTeamStore();
 const user = userStore.currentUser;
-let selectedFormation;
+let selectedFormation = ref(null);
 
 function handleFormationChange() {
     if (window.confirm(`¿Esta seguro que desea cambiar su formación a ${selectedFormation}? Deberá armar su equipo nuevamente`)) {
@@ -66,7 +66,7 @@ async function fetchFormations() {
 
 onMounted(async () => {
     await fetchFormations();
-    selectedFormation = formations.value[2].value;
+    selectedFormation.value = formations.value[2].value;
     teamStore.setTeamFormation(selectedFormation)
 });
 

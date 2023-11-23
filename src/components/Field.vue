@@ -16,34 +16,11 @@ let selectedPlayerId = ref(null);
 let selectedPlayer = ref(null);
 let formationsList;
 const players = ref(null);
-const playersTeam = ref([
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 0 },
-  { id: 6 },
-  { id: 7 },
-  { id: 8 },
-  { id: 9 },
-  { id: 10 },
-  { id: 11 },
-]);
+const playersTeam = ref(Array.from({ length: 11 }, () => ({ id: 0 })));
+let playerIndex = 0;
 
 let formation = ref('4-4-2');
 let formationMappings = ref([]);
-
-function getPlayerStyle(playerId) {
-  if (playerId !== 0) {
-    return {
-      backgroundColor: isSelected(playerId) ? '#00D8D8 !important' : 'white',
-    };
-  } else {
-    return {
-      backgroundColor: isSelected(playerId) ? '#00D8D8 !important' : 'dimgray',
-    };
-  }
-};
 
 const getPlayerUbication = async (playerId) => {
   const formationResponse = await axios.get(
@@ -56,18 +33,28 @@ const getPlayerUbication = async (playerId) => {
     },
     {}
   );
-  const playerIndex = playersTeam.value.findIndex(
-    (player) => player.id === playerId
-  );
   formationsList = formationResponse
   if (formationMappings.value[formation.value]) {
     const playerUbication = {
       x: formationMappings.value[formation.value][playerIndex].x,
       y: formationMappings.value[formation.value][playerIndex].y,
     };
+    playerIndex = playerIndex + 1
     return playerUbication || { x: 0, y: 0 };
   } else {
     return { x: 0, y: 0 };
+  }
+};
+
+function getPlayerStyle(playerId) {
+  if (playerId !== 0) {
+    return {
+      backgroundColor: isSelected(playerId) ? '#00D8D8 !important' : 'white',
+    };
+  } else {
+    return {
+      backgroundColor: isSelected(playerId) ? '#00D8D8 !important' : 'dimgray',
+    };
   }
 };
 
@@ -93,15 +80,26 @@ onMounted(async () => {
     if (!formationMappings.value[formation.value]) {
       console.error(`Formation ${formation.value} not found in mappings.`);
     }
-    let playersInTeam = players.value.filter((player) =>
-      playersTeam.value.some((teamPlayer) => teamPlayer.id === player.id)
-    );
+    let playersInTeam = generateDefaultPlayersArray()
     formation = teamStore.teamFormation;
     teamStore.calcularPrecioTotal(playersInTeam);
   } catch (error) {
     console.error("Error fetching data:", error);
   }
 });
+
+function generateDefaultPlayersArray() {
+  const defaultPlayer = {
+    id: 0,
+    name: "",
+    img: "",
+    position: "",
+    club: "",
+    price: 0
+  };
+  const defaultPlayersArray = Array.from({ length: 11 }, () => ({ ...defaultPlayer }));
+  return defaultPlayersArray;
+}
 </script>
 
 <style>
