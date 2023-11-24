@@ -50,7 +50,7 @@ async function openList() {
   if (!showList.value) {
     if (fieldPlayer == null) {
       await getPlayers();
-    } else if (fieldPlayer.id == 0) {
+    } else if (fieldPlayer.id > 100) {
       await getPlayersByPosition(positionUbic, fieldPlayer.id)
     } else {
       await getPlayersByPosition(fieldPlayer.position, fieldPlayer.id);
@@ -66,7 +66,7 @@ async function getPlayers() {
     const response = await axios.get(
       "https://www.mockachino.com/e17428de-e644-4e/players"
     );
-    players = response.data.players.filter(player => player.id !== 0);
+    players = response.data.players.filter(player => player.id <= 100);
   } catch (error) {
     console.error("Error al obtener datos de jugadores:", error);
   }
@@ -77,7 +77,7 @@ async function getPlayersByPosition(position, id) {
     await getPlayers();
     let playersProv = players.filter((player) => player.position === position);
     playersProv = playersProv.filter((player) => player.id !== id);
-    playersProv = playersProv.filter((player) => player.id !== 0);
+    playersProv = playersProv.filter((player) => player.id <= 100);
     players = playersProv;
   } catch (error) {
     console.error("Error al obtener datos de jugadores:", error);

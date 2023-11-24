@@ -15,7 +15,7 @@
             ? "DEL"
             : "ELIJA JUGADOR"
     }}<br />
-    {{ player.id === 0 ? '___' : '$ ' + player.price }}
+    {{ player.id > 100 ? '___' : '$ ' + player.price }}
   </div>
   <div v-else>
     <p>Cargando jugador...</p>
