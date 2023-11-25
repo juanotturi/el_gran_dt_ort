@@ -16,7 +16,7 @@ let selectedPlayerId = ref(null);
 let selectedPlayer = ref(null);
 let formationsList;
 const players = ref(null);
-let playersTeam = ref(Array.from({ length: 11 }, (_, index) => ({ id: 101 + index })));
+let playersTeam = ref(Array.from({ length: 11 }, (_, index) => ({ id: 1 + index })));
 let playerIndex = 0;
 
 let formation = ref('4-4-2');
@@ -47,7 +47,7 @@ const getPlayerUbication = async (playerId) => {
 };
 
 function getPlayerStyle(playerId) {
-  if (playerId <= 100) {
+  if (playerId > 11) {
     return {
       backgroundColor: isSelected(playerId) ? '#00D8D8 !important' : 'white !important',
     };
@@ -104,7 +104,7 @@ function generateDefaultPlayersArray() {
   };
   const defaultPlayersArray = Array.from({ length: 11 }, (_, index) => ({
     ...defaultPlayer,
-    id: 101 + index
+    id: 1 + index
   }));
   return defaultPlayersArray;
 }

@@ -50,7 +50,7 @@ async function openList() {
   if (!showList.value) {
     if (fieldPlayer == null) {
       await getPlayers();
-    } else if (fieldPlayer.id > 100) {
+    } else if (fieldPlayer.id >= 1 && fieldPlayer.id <= 11) {
       await getPlayersByPosition(positionUbic, fieldPlayer.id)
     } else {
       await getPlayersByPosition(fieldPlayer.position, fieldPlayer.id);
@@ -66,7 +66,7 @@ async function getPlayers() {
     const response = await axios.get(
       "https://www.mockachino.com/e17428de-e644-4e/players"
     );
-    players = response.data.players.filter(player => player.id <= 100);
+    players = response.data.players.filter(player => player.id > 11);
   } catch (error) {
     console.error("Error al obtener datos de jugadores:", error);
   }
@@ -77,7 +77,7 @@ async function getPlayersByPosition(position, id) {
     await getPlayers();
     let playersProv = players.filter((player) => player.position === position);
     playersProv = playersProv.filter((player) => player.id !== id);
-    playersProv = playersProv.filter((player) => player.id <= 100);
+    playersProv = playersProv.filter((player) => player.id > 11);
     players = playersProv;
   } catch (error) {
     console.error("Error al obtener datos de jugadores:", error);
@@ -93,11 +93,13 @@ async function changePlayer(player) {
   fieldPlayer = playerStore.currentPlayer.currentPlayer.value;
   if (player != null) {
     let confirmChange
-    if (fieldPlayer.id > 100) {
+    if (fieldPlayer.id <= 11) {
       confirmChange = window.confirm(`¿Desea agregar a ${player.name} a su equipo?`);
     } else {
       confirmChange = window.confirm(`¿Desea cambiar a ${fieldPlayer.name} por ${player.name}?`);
     }
+    let response = await axios.get("https://65593386e93ca47020aa1fc9.mockapi.io/playerUbication/")
+    console.log(response)
     if (confirmChange) {
       updatePlayer(fieldPlayer.id, player)
     }
