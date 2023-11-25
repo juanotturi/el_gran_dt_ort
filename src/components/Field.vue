@@ -81,13 +81,17 @@ onMounted(async () => {
     if (!formationMappings.value[formation.value]) {
       console.error(`Formation ${formation.value} not found in mappings.`);
     }
-    let playersInTeam = generateDefaultPlayersArray()
+    let playersInTeam = generateDefaultPlayersArray();
+    for (const player of playersInTeam) {
+      await axios.post("https://65593386e93ca47020aa1fc9.mockapi.io/playerUbication", player)
+    }
     formation = teamStore.teamFormation;
     teamStore.calcularPrecioTotal(playersInTeam);
   } catch (error) {
     console.error("Error fetching data:", error);
   }
 });
+
 
 function generateDefaultPlayersArray() {
   const defaultPlayer = {

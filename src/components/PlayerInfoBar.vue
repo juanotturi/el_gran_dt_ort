@@ -89,48 +89,30 @@ function setPlayer(player) {
   selectedPlayer.value = player;
 }
 
-function changePlayer(player) {
+async function changePlayer(player) {
   fieldPlayer = playerStore.currentPlayer.currentPlayer.value;
   if (player != null) {
-    const confirmChange = window.confirm(`¿Desea cambiar a ${fieldPlayer.name} por ${player.name}?`);
-    if (confirmChange) {
-      agregarNuevoJugador(player);
+    let confirmChange
+    if (fieldPlayer.id > 100) {
+      confirmChange = window.confirm(`¿Desea agregar a ${player.name} a su equipo?`);
     } else {
+      confirmChange = window.confirm(`¿Desea cambiar a ${fieldPlayer.name} por ${player.name}?`);
+    }
+    if (confirmChange) {
+      updatePlayer(fieldPlayer.id, player)
     }
   } else {
     alert("No ha seleccionado ningún jugador de la lista");
   }
 }
 
-async function agregarNuevoJugador(nuevoJugador) {
+async function updatePlayer(idPlayer, newPlayer) {
   try {
-    const response = await axios.post('https://65593386e93ca47020aa1fc9.mockapi.io/playerUbication', nuevoJugador, {
-   
+    const response = await axios.put(`https://65593386e93ca47020aa1fc9.mockapi.io/playerUbication/${idPlayer}`, newPlayer, {
     });
-
-    if (response.status === 200 || response.status === 201) {
-      // El jugador se agregó exitosamente
-      console.log('Jugador agregado correctamente');
-      // Puedes realizar acciones adicionales aquí, como actualizar la lista de jugadores
-    } else {
-      // Manejar el caso en el que la solicitud no fue exitosa
-      console.error('No se pudo agregar el jugador');
-    }
-  } catch (error) {
-    // Manejar errores de red u otros errores
-    console.error('Error al agregar jugador:', error);
-  }
-}
-
-async function modificarJugador(idJugador, datosActualizados) {
-  try {
-    const response = await axios.put(`${URL_BASE}/players/${idJugador}`, datosActualizados, {
-     
-    });
-
+    console.log(response)
     if (response.status === 200) {
       console.log('Jugador modificado correctamente');
-      // Puedes realizar acciones adicionales aquí si es necesario
     } else {
       console.error('No se pudo modificar el jugador');
     }
@@ -138,7 +120,6 @@ async function modificarJugador(idJugador, datosActualizados) {
     console.error('Error al modificar jugador:', error);
   }
 }
-
 </script>
 
 <style>
