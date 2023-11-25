@@ -92,11 +92,53 @@ function setPlayer(player) {
 function changePlayer(player) {
   fieldPlayer = playerStore.currentPlayer.currentPlayer.value;
   if (player != null) {
-    window.confirm(`¿Desea cambiar a ${fieldPlayer.name} por ${player.name}?`);
+    const confirmChange = window.confirm(`¿Desea cambiar a ${fieldPlayer.name} por ${player.name}?`);
+    if (confirmChange) {
+      agregarNuevoJugador(player);
+    } else {
+    }
   } else {
     alert("No ha seleccionado ningún jugador de la lista");
   }
 }
+
+async function agregarNuevoJugador(nuevoJugador) {
+  try {
+    const response = await axios.post('https://65593386e93ca47020aa1fc9.mockapi.io/playerUbication', nuevoJugador, {
+   
+    });
+
+    if (response.status === 200 || response.status === 201) {
+      // El jugador se agregó exitosamente
+      console.log('Jugador agregado correctamente');
+      // Puedes realizar acciones adicionales aquí, como actualizar la lista de jugadores
+    } else {
+      // Manejar el caso en el que la solicitud no fue exitosa
+      console.error('No se pudo agregar el jugador');
+    }
+  } catch (error) {
+    // Manejar errores de red u otros errores
+    console.error('Error al agregar jugador:', error);
+  }
+}
+
+async function modificarJugador(idJugador, datosActualizados) {
+  try {
+    const response = await axios.put(`${URL_BASE}/players/${idJugador}`, datosActualizados, {
+     
+    });
+
+    if (response.status === 200) {
+      console.log('Jugador modificado correctamente');
+      // Puedes realizar acciones adicionales aquí si es necesario
+    } else {
+      console.error('No se pudo modificar el jugador');
+    }
+  } catch (error) {
+    console.error('Error al modificar jugador:', error);
+  }
+}
+
 </script>
 
 <style>
