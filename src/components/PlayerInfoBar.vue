@@ -37,9 +37,11 @@ import { ref } from "vue";
 import Button from "primevue/button";
 import axios from "axios";
 import { usePlayerStore } from "../stores/playerStore.js";
+import { useTeamStore } from "../stores/teamStore";
 const showList = ref(false);
 const selectedPlayer = ref(null);
 const playerStore = usePlayerStore();
+const teamStore = useTeamStore()
 let fieldPlayer = ref(null);
 let positionUbic = ref(null);
 let players = [];
@@ -91,17 +93,21 @@ function setPlayer(player) {
 
 async function changePlayer(player) {
   fieldPlayer = playerStore.currentPlayer.currentPlayer.value;
+  console.log(fieldPlayer)
   if (player != null) {
-    let confirmChange
-    if (fieldPlayer.id <= 11) {
-      confirmChange = window.confirm(`¿Desea agregar a ${player.name} a su equipo?`);
+    if (fieldPlayer != null) {
+      let confirmChange
+      if (fieldPlayer.id <= 11) {
+        confirmChange = window.confirm(`¿Desea agregar a ${player.name} a su equipo?`);
+      } else {
+        confirmChange = window.confirm(`¿Desea cambiar a ${fieldPlayer.name} por ${player.name}?`);
+      }
+      if (confirmChange) {
+        updatePlayer(fieldPlayer.id, player)
+        alert('Presione ACTUALIZAR para ver su equipo nuevo')
+      }
     } else {
-      confirmChange = window.confirm(`¿Desea cambiar a ${fieldPlayer.name} por ${player.name}?`);
-    }
-    let response = await axios.get("https://65593386e93ca47020aa1fc9.mockapi.io/playerUbication/")
-    console.log(response)
-    if (confirmChange) {
-      updatePlayer(fieldPlayer.id, player)
+      alert("No ha seleccionado ningún jugador del campo de juego");
     }
   } else {
     alert("No ha seleccionado ningún jugador de la lista");
@@ -112,12 +118,13 @@ async function updatePlayer(idPlayer, newPlayer) {
   try {
     const response = await axios.put(`https://65593386e93ca47020aa1fc9.mockapi.io/playerUbication/${idPlayer}`, newPlayer, {
     });
-    console.log(response)
     if (response.status === 200) {
       console.log('Jugador modificado correctamente');
     } else {
       console.error('No se pudo modificar el jugador');
     }
+    let responseTeam = await axios.get("https://65593386e93ca47020aa1fc9.mockapi.io/playerUbication/")
+    teamStore.setTeam(responseTeam.data)
   } catch (error) {
     console.error('Error al modificar jugador:', error);
   }
