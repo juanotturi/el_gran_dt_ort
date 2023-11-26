@@ -24,7 +24,9 @@ let formation = ref('4-4-2');
 let formationMappings = ref([]);
 
 function updateTeam() {
+  console.log(teamStore.team.team)
   playersTeam.value = teamStore.team.team.map(item => ({ id: item.player.id }))
+  console.log(playersTeam.value)
 }
 
 const getPlayerUbication = async (playerId) => {
@@ -96,7 +98,7 @@ onMounted(async () => {
       await axios.post("https://65593386e93ca47020aa1fc9.mockapi.io/playerUbication", player)
     }
     formation = teamStore.teamFormation;
-    teamStore.setTeam(playersTeam.value)
+    teamStore.setTeam(playersInTeam)
     teamStore.calcularPrecioTotal(playersInTeam);
   } catch (error) {
     console.error("Error fetching data:", error);
