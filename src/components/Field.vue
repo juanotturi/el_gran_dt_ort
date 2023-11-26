@@ -39,16 +39,21 @@ const getPlayerUbication = async (playerId) => {
     {}
   );
   formationsList = formationResponse
+  let playerUbication = null;
   if (formationMappings.value[formation.value]) {
-    const playerUbication = {
-      x: formationMappings.value[formation.value][playerIndex].x,
-      y: formationMappings.value[formation.value][playerIndex].y,
-    };
-    playerIndex = playerIndex + 1
-    return playerUbication || { x: 0, y: 0 };
+    teamStore.setUbicationsArray(formationMappings.value[formation.value])
   } else {
-    return { x: 0, y: 0 };
+    formationMappings.value[formation.value] = teamStore.ubicationsArray.ubicationsArray
   }
+  playerUbication = {
+    x: formationMappings.value[formation.value][playerIndex].x,
+    y: formationMappings.value[formation.value][playerIndex].y,
+  };
+  playerIndex = playerIndex + 1
+  if (playerIndex === 11) {
+    playerIndex = 0
+  }
+  return playerUbication || { x: 0, y: 0 };
 };
 
 function getPlayerStyle(playerId) {
@@ -79,7 +84,6 @@ const selectPlayer = async (playerId) => {
 
 onMounted(async () => {
   try {
-    console.log('entro 1')
     const response = await axios.get(
       "https://www.mockachino.com/e17428de-e644-4e/players"
     );

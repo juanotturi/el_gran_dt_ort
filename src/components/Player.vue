@@ -44,7 +44,6 @@ async function getPlayers() {
 
 onMounted(async () => {
   try {
-    console.log('entro 2')
     const players = await getPlayers();
     const selectedPlayer = players.find((player) => player.id === props.id);
     if (selectedPlayer) {

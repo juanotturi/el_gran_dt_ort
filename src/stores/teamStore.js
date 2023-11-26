@@ -5,10 +5,14 @@ export const useTeamStore = defineStore("teamStore", () => {
   let _teamPrice = ref(0);
   let _teamFormation = ref(null);
   let _team = ref(null);
+  let _ubicationsArray = ref(null);
+
+  function setUbicationsArray(array) {
+    _ubicationsArray = array;
+  }
 
   function setTeam(teamField) {
     _team = teamField;
-    console.log(_team);
   }
 
   function setTeamFormation(formation) {
@@ -25,6 +29,10 @@ export const useTeamStore = defineStore("teamStore", () => {
     teamPrice = _teamPrice;
   }
 
+  let ubicationsArray = computed(() => ({
+    ubicationsArray: _ubicationsArray,
+  }));
+
   let teamFormation = computed(() => ({
     teamFormation: _teamFormation,
   }));
@@ -39,6 +47,8 @@ export const useTeamStore = defineStore("teamStore", () => {
 
   return {
     teamPrice,
+    ubicationsArray,
+    setUbicationsArray,
     teamFormation,
     setTeam,
     setTeamFormation,
