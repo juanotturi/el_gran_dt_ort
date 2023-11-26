@@ -138,7 +138,6 @@ async function updatePlayer(idPlayer, newPlayer) {
     console.error('Error al modificar jugador:', error);
   }
 }
-
 </script>
 
 <style>
