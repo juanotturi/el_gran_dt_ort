@@ -23,10 +23,9 @@ let playerIndex = 0;
 let formation = ref('4-4-2');
 let formationMappings = ref([]);
 
-function updateTeam() {
-  console.log(teamStore.team.team)
-  playersTeam.value = teamStore.team.team.map(item => ({ id: item.player.id }))
-  console.log(playersTeam.value)
+async function updateTeam() {
+  let responseTeam = await axios.get("https://65593386e93ca47020aa1fc9.mockapi.io/playerUbication/")
+  playersTeam.value = responseTeam.data.map(item => ({ id: item.player.id }))
 }
 
 const getPlayerUbication = async (playerId) => {

@@ -4,7 +4,7 @@ import { ref, computed } from "vue";
 export const useTeamStore = defineStore("teamStore", () => {
   let _teamPrice = ref(0);
   let _teamFormation = ref(null);
-  let _team = ref(null);
+  let _team = ref([]);
   let _ubicationsArray = ref(null);
 
   function setUbicationsArray(array) {
