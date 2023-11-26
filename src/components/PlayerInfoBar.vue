@@ -93,7 +93,6 @@ function setPlayer(player) {
 
 async function changePlayer(player) {
   fieldPlayer = playerStore.currentPlayer.currentPlayer.value;
-  console.log(fieldPlayer)
   if (player != null) {
     if (fieldPlayer != null) {
       let confirmChange

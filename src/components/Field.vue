@@ -1,11 +1,13 @@
 <template>
   <img class="cancha" src="../assets/cancha.png" />
+  <Button @click="updateTeam()" class="fixed-width-button update-button" label="ACTUALIZAR" severity="success" />
   <Player v-for="player in playersTeam" :key="player.id" :id="player.id" :ubication="getPlayerUbication(player.id)"
     :style="getPlayerStyle(player.id)" @click="selectPlayer(player.id)" />
 </template>
 
 <script setup>
 import Player from "./Player.vue";
+import Button from "primevue/button";
 import { ref, onMounted } from "vue";
 import axios from "axios";
 import { usePlayerStore } from "../stores/playerStore.js";
@@ -21,6 +23,10 @@ let playerIndex = 0;
 
 let formation = ref('4-4-2');
 let formationMappings = ref([]);
+
+function updateTeam() {
+  //continuará...
+}
 
 const getPlayerUbication = async (playerId) => {
   const formationResponse = await axios.get(
@@ -82,8 +88,6 @@ onMounted(async () => {
       console.error(`Formation ${formation.value} not found in mappings.`);
     }
     let playersInTeam = generateDefaultPlayersArray();
-    console.log(playersInTeam)
-    console.log(playersTeam)
     for (const player of playersInTeam) {
       await axios.post("https://65593386e93ca47020aa1fc9.mockapi.io/playerUbication", player)
     }
