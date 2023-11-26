@@ -115,19 +115,30 @@ async function changePlayer(player) {
 
 async function updatePlayer(idPlayer, newPlayer) {
   try {
-    const response = await axios.put(`https://65593386e93ca47020aa1fc9.mockapi.io/playerUbication/${idPlayer}`, newPlayer, {
-    });
+    newPlayer = {
+      player: {
+        id: newPlayer.id,
+        name: newPlayer.name,
+        img: newPlayer.img,
+        position: newPlayer.position,
+        club: newPlayer.club,
+        price: newPlayer.price
+      }
+    };
+    const response = await axios.put(`https://65593386e93ca47020aa1fc9.mockapi.io/playerUbication/${idPlayer}`, newPlayer);
     if (response.status === 200) {
       console.log('Jugador modificado correctamente');
     } else {
       console.error('No se pudo modificar el jugador');
     }
+
     let responseTeam = await axios.get("https://65593386e93ca47020aa1fc9.mockapi.io/playerUbication/")
     teamStore.setTeam(responseTeam.data)
   } catch (error) {
     console.error('Error al modificar jugador:', error);
   }
 }
+
 </script>
 
 <style>

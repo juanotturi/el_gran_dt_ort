@@ -16,10 +16,12 @@ export const useTeamStore = defineStore("teamStore", () => {
   }
 
   async function calcularPrecioTotal(playersArray) {
-    _teamPrice.value = await playersArray.reduce(
-      (total, player) => total + player.price,
-      0
-    );
+    let prices = playersArray.map((elemento) => elemento.player.price);
+    let sumatoriaPrecios = 0;
+    for (let priceI of prices) {
+      sumatoriaPrecios = sumatoriaPrecios + priceI;
+    }
+    _teamPrice.value = sumatoriaPrecios;
     teamPrice = _teamPrice;
   }
 

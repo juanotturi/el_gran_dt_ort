@@ -16,16 +16,16 @@ const playerStore = usePlayerStore();
 const teamStore = useTeamStore();
 let selectedPlayerId = ref(null);
 let selectedPlayer = ref(null);
+let reloadComponents = ref(true)
 let formationsList;
 const players = ref(null);
 let playersTeam = ref(Array.from({ length: 11 }, (_, index) => ({ id: 1 + index })));
 let playerIndex = 0;
-
 let formation = ref('4-4-2');
 let formationMappings = ref([]);
 
 function updateTeam() {
-  playersTeam.value = teamStore.team.team.map(item => ({ id: item.id }))
+  // playersTeam.value = teamStore.team.team.map(item => ({ id: item.id }))
   reloadComponents.value = true;
   console.log(playersTeam)
 }
@@ -111,11 +111,15 @@ function generateDefaultPlayersArray() {
     price: 0
   };
   const defaultPlayersArray = Array.from({ length: 11 }, (_, index) => ({
-    ...defaultPlayer,
-    id: 1 + index
+    player: {
+      ...defaultPlayer,
+      id: 1 + index
+    },
+    idUb: (1 + index).toString()
   }));
   return defaultPlayersArray;
 }
+
 </script>
 
 <style>
