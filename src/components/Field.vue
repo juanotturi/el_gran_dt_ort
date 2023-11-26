@@ -25,7 +25,9 @@ let formation = ref('4-4-2');
 let formationMappings = ref([]);
 
 function updateTeam() {
-  //continuará...
+  playersTeam.value = teamStore.team.team.map(item => ({ id: item.id }))
+  reloadComponents.value = true;
+  console.log(playersTeam)
 }
 
 const getPlayerUbication = async (playerId) => {
