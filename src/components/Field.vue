@@ -94,12 +94,18 @@ onMounted(async () => {
       console.error(`Formation ${formation.value} not found in mappings.`);
     }
     let playersInTeam = generateDefaultPlayersArray();
-    for (const player of playersInTeam) {
-      await axios.post("https://65593386e93ca47020aa1fc9.mockapi.io/playerUbication", player)
+    let actualTeam = await axios.get("https://65593386e93ca47020aa1fc9.mockapi.io/playerUbication")
+    if (actualTeam.data.length > 0) {
+      teamStore.setTeam(actualTeam.data)
+      teamStore.calcularPrecioTotal(actualTeam.data);
+    } else {
+      for (const player of playersInTeam) {
+        await axios.post("https://65593386e93ca47020aa1fc9.mockapi.io/playerUbication", player)
+      }
+      teamStore.setTeam(playersInTeam)
+      teamStore.calcularPrecioTotal(playersInTeam);
     }
     formation = teamStore.teamFormation;
-    teamStore.setTeam(playersInTeam)
-    teamStore.calcularPrecioTotal(playersInTeam);
   } catch (error) {
     console.error("Error fetching data:", error);
   }
