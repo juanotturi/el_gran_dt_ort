@@ -80,6 +80,7 @@ const selectPlayer = async (playerId) => {
   );
   await playerStore.setFieldPlayerId(playerId, formationsList.data.formations[2].ubications.coordinates[playerIndex].position);
   selectedPlayer = playerStore.currentPlayer.currentPlayer.value;
+  teamStore.setSelectedPlayer(playerIndex + 1)
   selectedPlayerId.value = playerId;
 };
 

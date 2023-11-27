@@ -98,11 +98,12 @@ async function changePlayer(player) {
       let confirmChange
       if (fieldPlayer.id <= 11) {
         confirmChange = window.confirm(`¿Desea agregar a ${player.name} a su equipo?`);
+        updatePlayer(fieldPlayer.id, player)
       } else {
         confirmChange = window.confirm(`¿Desea cambiar a ${fieldPlayer.name} por ${player.name}?`);
+        updatePlayer(teamStore.selectedPlayer.selectedPlayer.value, player)
       }
       if (confirmChange) {
-        updatePlayer(fieldPlayer.id, player)
         alert('Presione ACTUALIZAR para ver su equipo nuevo')
       }
     } else {
