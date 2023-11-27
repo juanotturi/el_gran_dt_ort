@@ -23,6 +23,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '../stores/userStore.js';
 import Button from 'primevue/button';
+import { useStore } from 'vuex';
 const mail = ref('');
 const password = ref('');
 const router = useRouter();

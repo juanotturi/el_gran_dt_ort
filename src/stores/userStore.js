@@ -1,15 +1,15 @@
 import { defineStore } from "pinia";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import axios from "axios";
 
 export const useUserStore = defineStore("userStore", () => {
-  let _users = null;
-  let _mail = null;
-  let _password = null;
-  let _name = null;
-  let _surname = null;
-  let _team = null;
-  let _loginOk = null;
+  let _users = ref(null);
+  let _mail = ref(null);
+  let _password = ref(null);
+  let _name = ref(null);
+  let _surname = ref(null);
+  let _team = ref(null);
+  let _loginOk = ref(null);
 
   async function login(mail, password) {
     try {
@@ -48,7 +48,7 @@ export const useUserStore = defineStore("userStore", () => {
   }
 
   let isLoggedIn = computed(() => _loginOk);
-  const currentUser = computed(() => ({
+  let currentUser = computed(() => ({
     mail: _mail,
     password: _password,
     name: _name,

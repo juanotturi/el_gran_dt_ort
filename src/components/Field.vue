@@ -12,6 +12,7 @@ import { ref, onMounted } from "vue";
 import axios from "axios";
 import { usePlayerStore } from "../stores/playerStore.js";
 import { useTeamStore } from "../stores/teamStore";
+
 const playerStore = usePlayerStore();
 const teamStore = useTeamStore();
 let selectedPlayerId = ref(null);

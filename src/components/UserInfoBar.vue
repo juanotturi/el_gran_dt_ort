@@ -1,11 +1,11 @@
 <template>
     <div class="left-panel">
         <div class="panel-item">
-            <p>Equipo:<br>{{ user.team }}</p>
+            <p>Equipo:<br>{{ userStore.currentUser.team }}</p>
         </div>
         <div class="divider"></div>
         <div class="panel-item">
-            <p>DT:<br>{{ user.name + " " + user.surname }}</p>
+            <p>DT:<br>{{ userStore.currentUser.name + " " + userStore.currentUser.surname }}</p>
         </div>
         <div class="divider"></div>
         <div class="panel-item">
