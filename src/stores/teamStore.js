@@ -13,7 +13,6 @@ export const useTeamStore = defineStore("teamStore", () => {
 
   function setTeam(teamField) {
     _team = teamField;
-    console.log(_team);
   }
 
   function setTeamFormation(formation) {

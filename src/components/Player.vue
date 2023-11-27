@@ -44,10 +44,8 @@ async function getPlayers() {
 
 onMounted(async () => {
   try {
-    console.log('entro')
     const players = await getPlayers();
     const selectedPlayer = players.find((player) => player.id === props.id);
-    console.log(selectedPlayer)
     if (selectedPlayer) {
       const ubication = await props.ubication;
       player.value = { ...selectedPlayer, ubication: ubication };

@@ -132,8 +132,8 @@ async function updatePlayer(idPlayer, newPlayer) {
       console.error('No se pudo modificar el jugador');
     }
     let responseTeam = await axios.get("https://65593386e93ca47020aa1fc9.mockapi.io/playerUbication/")
-    console.log(responseTeam.data)
     teamStore.setTeam(responseTeam.data)
+    teamStore.calcularPrecioTotal(responseTeam.data)
   } catch (error) {
     console.error('Error al modificar jugador:', error);
   }
