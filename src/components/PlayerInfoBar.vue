@@ -45,6 +45,7 @@ const teamStore = useTeamStore()
 let fieldPlayer = ref(null);
 let positionUbic = ref(null);
 let players = [];
+let playersTeam = ref(null)
 
 async function openList() {
   fieldPlayer = playerStore.currentPlayer.currentPlayer.value;
@@ -103,9 +104,6 @@ async function changePlayer(player) {
         confirmChange = window.confirm(`¿Desea cambiar a ${fieldPlayer.name} por ${player.name}?`);
         updatePlayer(teamStore.selectedPlayer.selectedPlayer.value, player)
       }
-      if (confirmChange) {
-        alert('Presione ACTUALIZAR para ver su equipo nuevo')
-      }
     } else {
       alert("No ha seleccionado ningún jugador del campo de juego");
     }
@@ -133,7 +131,10 @@ async function updatePlayer(idPlayer, newPlayer) {
       console.error('No se pudo modificar el jugador');
     }
     let responseTeam = await axios.get("https://65593386e93ca47020aa1fc9.mockapi.io/playerUbication/")
+    playersTeam.value = responseTeam.data.map(item => ({ id: item.player.id }))
     teamStore.setTeam(responseTeam.data)
+    teamStore.setTeamArrayId(playersTeam.value)
+    console.log(teamStore.teamArrayId.teamArrayId)
     teamStore.calcularPrecioTotal(responseTeam.data)
   } catch (error) {
     console.error('Error al modificar jugador:', error);

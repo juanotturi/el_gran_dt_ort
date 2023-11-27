@@ -1,13 +1,11 @@
 <template>
   <img class="cancha" src="../assets/cancha.png" />
-  <Button @click="updateTeam()" class="fixed-width-button update-button" label="ACTUALIZAR" severity="success" />
-  <Player v-for="player in playersTeam" :key="player.id" :id="player.id" :ubication="getPlayerUbication(player.id)"
-    :style="getPlayerStyle(player.id)" @click="selectPlayer(player.id)" />
+  <Player v-for="player in teamStore.teamArrayId.teamArrayId.value" :key="player.id" :id="player.id"
+    :ubication="getPlayerUbication(player.id)" :style="getPlayerStyle(player.id)" @click="selectPlayer(player.id)" />
 </template>
 
 <script setup>
 import Player from "./Player.vue";
-import Button from "primevue/button";
 import { ref, onMounted } from "vue";
 import axios from "axios";
 import { usePlayerStore } from "../stores/playerStore.js";
@@ -19,15 +17,10 @@ let selectedPlayerId = ref(null);
 let selectedPlayer = ref(null);
 let formationsList;
 const players = ref(null);
-let playersTeam = ref(Array.from({ length: 11 }, (_, index) => ({ id: 1 + index })));
-let playerIndex = 0;
+let playersTeam = ref(null);
+let playerIndex = ref(0);
 let formation = ref('4-4-2');
 let formationMappings = ref([]);
-
-async function updateTeam() {
-  let responseTeam = await axios.get("https://65593386e93ca47020aa1fc9.mockapi.io/playerUbication/")
-  playersTeam.value = responseTeam.data.map(item => ({ id: item.player.id }))
-}
 
 const getPlayerUbication = async (playerId) => {
   const formationResponse = await axios.get(
@@ -47,13 +40,14 @@ const getPlayerUbication = async (playerId) => {
   } else {
     formationMappings.value[formation.value] = teamStore.ubicationsArray.ubicationsArray
   }
+  console.log(playerIndex.value)
   playerUbication = {
-    x: formationMappings.value[formation.value][playerIndex].x,
-    y: formationMappings.value[formation.value][playerIndex].y,
+    x: formationMappings.value[formation.value][playerIndex.value].x,
+    y: formationMappings.value[formation.value][playerIndex.value].y,
   };
-  playerIndex = playerIndex + 1
-  if (playerIndex === 11) {
-    playerIndex = 0
+  playerIndex.value = playerIndex.value + 1
+  if (playerIndex.value === 11) {
+    playerIndex.value = 0
   }
   return playerUbication || { x: 0, y: 0 };
 };
@@ -87,6 +81,10 @@ const selectPlayer = async (playerId) => {
 
 onMounted(async () => {
   try {
+    let responseTeam = await axios.get("https://65593386e93ca47020aa1fc9.mockapi.io/playerUbication/")
+    playersTeam.value = responseTeam.data.map(item => ({ id: item.player.id }))
+    console.log(playersTeam)
+    teamStore.setTeamArrayId(playersTeam.value)
     const response = await axios.get(
       "https://www.mockachino.com/e17428de-e644-4e/players"
     );
