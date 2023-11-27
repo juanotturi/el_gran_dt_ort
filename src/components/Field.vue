@@ -60,12 +60,12 @@ const getPlayerUbication = async (playerId) => {
 function getPlayerStyle(playerId) {
   if (playerId > 11) {
     return {
-      backgroundColor: isSelected(playerId) ? '#00D8D8 !important' : 'white !important',
+      backgroundColor: isSelected(playerId) ? '#00D8D8 !important' : '#346C50D6 !important',
     };
   } else {
     return {
       backgroundColor: isSelected(playerId) ? '#00D8D8 !important' : 'dimgray !important',
-      color: 'dimgray'
+      color: 'dimgray !important'
     };
   }
 };
